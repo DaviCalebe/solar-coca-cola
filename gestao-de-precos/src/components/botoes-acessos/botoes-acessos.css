@@ -1,0 +1,17 @@
+.red-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+    background-color: #AE111B;
+    color: whitesmoke;
+    width: 213px;
+    height: 95px;
+}
+
+.icon{
+    display: flex;
+    justify-content: center;
+    width: 57px;
+    height: 57px;
+}

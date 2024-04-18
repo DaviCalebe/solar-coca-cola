@@ -1,8 +1,10 @@
-import Navbar from "../components/sidebar/navbar";
+import Navbar from "../components/navbar/navbar";
+import Botoes_acessos from "../components/botoes-acessos/botoes-acessos";
 
 function Home(){
     return <>
-        <Navbar></Navbar>
+        <Navbar />
+        <Botoes_acessos />
     </>
 }
 

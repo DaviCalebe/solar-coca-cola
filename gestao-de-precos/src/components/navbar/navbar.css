@@ -1,0 +1,27 @@
+.navbar{
+    display: flex;
+}
+
+.logo_maior{
+    padding: 17px;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background-color: #d9d9d9;
+    width: 100px;
+    height: 100vh;
+}
+
+.upbar{
+    width: 100vw;
+    height: 133px;
+}
+
+.icon {
+    width:64px;
+    height:64px;
+}
