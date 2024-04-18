@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+}
+
+.logo_maior{
+    width: 313px;
+    height: 212px;
+}
+
+.sidebar{
+/*     centralizar as imagens aqui
+ */    
+    background-color: #d9d9d9;
+    width: 100px;
+    height: 100vh;
+}
+
+.icon {
+    width: auto;
+    height: auto;
+}
