@@ -1,4 +1,8 @@
-.red-box{
+.nav-btn{
+    padding: 10px;
+}
+
+.red-btn{
     display: flex;
     justify-content: center;
     align-items: center;

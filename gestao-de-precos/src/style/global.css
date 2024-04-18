@@ -10,6 +10,10 @@ body{
     background-color: #e8e8e8;
 }
 
+main{
+    margin-left: 7rem;
+}
+
 .text-center{
     text-align: center;
 }
@@ -20,4 +24,13 @@ body{
 
 .text-right{
     text-align: end;
+}
+
+.upbar{
+    width: 100vw;
+    height: 133px;
+}
+
+.logo_maior{
+    padding: 17px;
 }
