@@ -7,10 +7,10 @@ function Botoes_acessos(){
         <div className="nav-btn">
             
             <div className="acesso-clientes red-btn">
-                <div className="icon">
+                <div className="acessos_icon">
                 <img src={clientes} alt="clientes" />
                 </div>
-                <div className="letreiro">
+                <div className="acessos_letreiro">
                     <p>ACESSAR</p>
                     <h2>Clientes</h2>
                 </div>

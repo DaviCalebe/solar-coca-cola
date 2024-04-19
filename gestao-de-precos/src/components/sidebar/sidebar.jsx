@@ -10,11 +10,11 @@ function Sidebar(){
     return <>
         <div className="sidebar">
             <img src={logo} className="logo" alt="logo" />
-            <img src={clientes} className="icon" alt="clientes" />
-            <img src={produtos} className="icon" alt="produtos" />
-            <img src={precos} className="icon" alt="precos" />
-            <img src={promocao} className="icon" alt="promocao" />
-            <img src={relatorios} className="icon" alt="relatorios" />
+            <img src={clientes} className="sidebar_icon" alt="clientes" />
+            <img src={produtos} className="sidebar_icon" alt="produtos" />
+            <img src={precos} className="sidebar_icon" alt="precos" />
+            <img src={promocao} className="sidebar_icon" alt="promocao" />
+            <img src={relatorios} className="sidebar_icon" alt="relatorios" />
         </div>
     </>
 }
