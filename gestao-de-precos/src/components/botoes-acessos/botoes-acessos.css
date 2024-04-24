@@ -13,6 +13,10 @@
     height: 95px;
 }
 
+.no-underline {
+    text-decoration: none;
+  }
+
 .acessos_icon{
     display: flex;
     justify-content: center;

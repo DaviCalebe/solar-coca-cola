@@ -7,11 +7,11 @@
     align-items: center;
     gap: 25px;
     background-color: #d9d9d9;
-    width: 100px;
+    width: 80px;
     height: 100vh;
 }
 
 .sidebar_icon {
-    width:64px;
-    height:64px;
+    width: 47px;
+    height: 47px;
 }

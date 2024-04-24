@@ -11,7 +11,7 @@ body{
 }
 
 main{
-    margin-left: 7rem;
+    margin-left: 6rem;
 }
 
 .text-center{
@@ -28,4 +28,76 @@ main{
 
 .red{
     color: #AE111B;
+}
+
+.filter-options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 13px;
+}
+
+.search-box{
+    display: flex;
+    align-items: center;
+    width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.search-box img{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+}
+
+.search-box-inside{
+    background-color: white;
+    border: none;
+    width: 92%;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.box-btn{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 3px;
+}
+
+.crud-btn{
+    height: 40px;
+    padding: 5px;
+}
+
+.table-box{
+    max-width: 90%;
+    border: 1px solid #ccc;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+table{
+    width: 100%;
+}
+
+thead th{
+    text-align: start;
+    padding: 0 15px;
+}
+
+td{
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+}
+
+.text-red{
+    color: #cd3d2e;
 }
