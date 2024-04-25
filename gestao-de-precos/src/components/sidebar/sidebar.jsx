@@ -20,9 +20,17 @@ function Sidebar(){
             <Link to="/produtos">
                 <img src={produtos} className="sidebar_icon" alt="produtos" />
             </Link>
-            <img src={precos} className="sidebar_icon" alt="precos" />
+            <Link to ="/tabela-precos">
+            <img src={precos} className="sidebar_icon" alt="tabela-precos" />
+             </Link>
+            <Link to="/promocao"> 
             <img src={promocao} className="sidebar_icon" alt="promocao" />
+             </Link>
+            
+            <Link to ="/relatorios">
             <img src={relatorios} className="sidebar_icon" alt="relatorios" />
+            </Link>
+            
         </div>
     </>
 }
