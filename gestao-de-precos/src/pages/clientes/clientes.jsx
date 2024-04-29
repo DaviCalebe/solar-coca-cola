@@ -1,7 +1,7 @@
+import "./clientes.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
-import "./clientes.css";
 import {clientes} from "../../dados.jsx";
 
 function Clientes(){
@@ -15,11 +15,13 @@ function Clientes(){
                 <input type="text" class="search-box-inside" placeholder="Pesquisar..." />
 
             </div>
+
             <select name="nivel" id="nivel" className="clientes-select">
                 <option value="ouro">Ouro</option>
                 <option value="prata">Prata</option>
                 <option value="bronze">Bronze</option>
             </select>
+
             <select name="regiao" id="regiao" className="clientes-select">
                 <option value="norte">Norte</option>
                 <option value="nordeste">Nordeste</option>
@@ -27,10 +29,12 @@ function Clientes(){
                 <option value="sudeste">Sudeste</option>
                 <option value="sul">Sul</option>
             </select>
+
             <button className="crud-btn">
                 + Adicionar novo
             </button>
         </div>
+        
         <div className="table-box box-clientes">
             <table>
                 <thead>

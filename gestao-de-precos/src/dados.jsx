@@ -122,13 +122,14 @@ const clientes = [
 ];
 
 const produtos = [
-  { id: 1, nome: 'Coca-Cola', quantidadeAtual: 60, quantidadeMaxima: 120, categoria: 'Refrigerantes' },
-  { id: 2, nome: 'Fanta Laranja', quantidadeAtual: 96, quantidadeMaxima: 180, categoria: 'Refrigerantes' },
-  { id: 3, nome: 'Fanta Uva', quantidadeAtual: 36, quantidadeMaxima: 96, categoria: 'Refrigerantes' },
-  { id: 4, nome: 'Sprite', quantidadeAtual: 84, quantidadeMaxima: 144, categoria: 'Refrigerantes' },
-  { id: 5, nome: 'Schweppes', quantidadeAtual: 48, quantidadeMaxima: 120, categoria: 'Refrigerantes' },
-  { id: 6, nome: 'Água Mineral Crystal', quantidadeAtual: 144, quantidadeMaxima: 240, categoria: 'Águas' },
-  { id: 7, nome: 'Água Mineral Bonafont', quantidadeAtual: 96, quantidadeMaxima: 180, categoria: 'Águas' },
+  { id: 1, nome: 'Coca-Cola', preco: 10.00, quantidadeAtual: 70, quantidadeMaxima: 120, categoria: 'Refrigerantes' },
+  { id: 2, nome: 'Fanta Laranja', preco: 9.00, quantidadeAtual: 100, quantidadeMaxima: 180, categoria: 'Refrigerantes' },
+  { id: 3, nome: 'Fanta Uva', preco: 8.80, quantidadeAtual: 40, quantidadeMaxima: 96, categoria: 'Refrigerantes' },
+  { id: 4, nome: 'Sprite', preco: 8.20, quantidadeAtual: 90, quantidadeMaxima: 144, categoria: 'Refrigerantes' },
+  { id: 5, nome: 'Schweppes', preco: 6.75, quantidadeAtual: 48, quantidadeMaxima: 120, categoria: 'Refrigerantes' },
+  { id: 6, nome: 'Água Mineral Crystal', preco: 2.80, quantidadeAtual: 144, quantidadeMaxima: 240, categoria: 'Águas' },
+  { id: 7, nome: 'Água Mineral Bonafont', preco: 3.00, quantidadeAtual: 96, quantidadeMaxima: 180, categoria: 'Águas' },
 ];
+
 
 export {clientes, produtos}

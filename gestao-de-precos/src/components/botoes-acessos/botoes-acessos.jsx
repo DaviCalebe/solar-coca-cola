@@ -34,19 +34,6 @@ function Botoes_acessos(){
                     </div>
                 </div>
             </Link>
-
-            <Link to="/tabela-precos" className="no-underline">
-                <div className="red-btn">
-                    <div className="acessos_icon">
-                        <img src={precos} alt="preços" />
-                    </div>
-                    <div className="acessos-letreiro">
-                        <p>ACESSAR</p>
-                        <h2>Tabela de Preços</h2>
-                    </div>
-                </div>
-            </Link>
-
             
             <Link to="/promocao" className="no-underline">
                 <div className="red-btn">

@@ -1,6 +1,7 @@
 .nav-btn{
     padding: 10px;
     display: flex;
+    justify-content: space-evenly;
     gap: 20px;
 }
 
@@ -24,4 +25,8 @@
     justify-content: center;
     width: 70px;
     height: 57px;
+}
+
+#clientes-svg{
+    fill: whitesmoke;
 }

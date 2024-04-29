@@ -2,7 +2,6 @@ import "./sidebar.css";
 import logo from "../../assets/solar-logo.svg"
 import clientes from "../../assets/clientes-red.svg"
 import produtos from "../../assets/produtos-red.svg"
-import precos from "../../assets/precos-red.svg"
 import promocao from "../../assets/promocao-red.svg"
 import relatorios from "../../assets/relatorios-red.svg"
 import { Link } from "react-router-dom";
@@ -20,9 +19,6 @@ function Sidebar(){
             <Link to="/produtos">
                 <img src={produtos} className="sidebar_icon" alt="produtos" />
             </Link>
-            <Link to ="/tabela-precos">
-            <img src={precos} className="sidebar_icon" alt="tabela-precos" />
-             </Link>
             <Link to="/promocao"> 
             <img src={promocao} className="sidebar_icon" alt="promocao" />
              </Link>
