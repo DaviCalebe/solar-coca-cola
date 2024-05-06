@@ -1,5 +1,5 @@
 import "./upbar.css";
-import logo_maior from "../../assets/solar-logo-maior.svg";
+import logo_maior from "../../assets/solar-logo-maior.webp";
 
 function Upbar(props){
     return <>

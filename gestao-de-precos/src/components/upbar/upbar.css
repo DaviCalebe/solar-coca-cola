@@ -3,19 +3,18 @@
     justify-content: space-between;
     align-items: center;
     width: 92vw;
-    height: 133px;
+    height: 87px;
 }
 
 .page-title{
     position: absolute;
     top: 30px;
     left: 45%;
-    font-size: 2.7rem;
+    font-size: 1.8rem;
 }
 
 .logo_maior{
-    padding: 17px;
-    width: 15rem;
+    width: 240px;
 }
 
 .saudacao-usuario{
