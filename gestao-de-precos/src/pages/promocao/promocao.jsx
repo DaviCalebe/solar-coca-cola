@@ -7,15 +7,6 @@ function Promocao (){
     return <main>
         <Sidebar />
         <Upbar title="Promoção" />
-        
-        <div className="filter-options">
-            <div className="search-box">
-                <img src={lupa} alt="" />
-                <input type="text" class="search-box-inside" placeholder="Pesquisar..." />
-
-            </div>
-        </div>
-      
 
         </main>
     

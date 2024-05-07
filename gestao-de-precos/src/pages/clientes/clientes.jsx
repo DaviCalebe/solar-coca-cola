@@ -2,9 +2,21 @@ import "./clientes.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
+import { useState, useEffect } from "react";
 import {clientes} from "../../dados.jsx";
 
 function Clientes(){
+
+    const [repos, setRepos] = useState([]);
+    const [search, setSearch] = useState('');
+    const filteredRepos = search.length > 0
+    ? repos.filter(repo => repo.nome.toLowerCase().includes(search.toLowerCase()))
+    : [];
+
+    useEffect(() => {
+        setRepos(clientes);
+    }, []);
+
     return <main>
         <Sidebar />
         <Upbar title="Clientes" />
@@ -12,7 +24,12 @@ function Clientes(){
         <div className="filter-options">
             <div className="search-box">
                 <img src={lupa} alt="" />
-                <input type="text" class="search-box-inside" placeholder="Pesquisar..." />
+                <input type="text"
+                className="search-box-inside"
+                placeholder="Pesquisar..."
+                onChange={e => setSearch(e.target.value)}
+                value={search}
+                />
 
             </div>
 
@@ -48,28 +65,58 @@ function Clientes(){
                         <th>Opções</th>
                     </tr>
                 </thead>
-                {
-                    clientes.map(function(cl){
-                        return <tr>
-                            <td><strong>{cl.id}</strong></td>
-                            <td>{cl.nome}</td>
-                            <td>{cl.regiao}</td>
-                            <td>{cl.nivel}</td>
-                            <td>{cl.email}</td>
-                            <td>{cl.telefone}</td>
-                            <div className="box-btn">
-                                <button className="editar-btn crud-btn">
-                                    Editar
-                                </button>
-                                <button className="remover-btn crud-btn">
-                                    Remover
-                                </button> 
-                            </div>
-                        </tr>
-                    })
+                <tbody>
+                    {
+                        search.length > 0 ? (
 
-                }
+                            filteredRepos.map(function(cl){
+                                return <tr key={cl.id}>
+                                    <td><strong>{cl.id}</strong></td>
+                                    <td>{cl.nome}</td>
+                                    <td>{cl.regiao}</td>
+                                    <td>{cl.nivel}</td>
+                                    <td>{cl.email}</td>
+                                    <td>{cl.telefone}</td>
+                                    <td>
+                                        <div className="box-btn">
+                                            <button className="editar-btn crud-btn">
+                                                Editar
+                                            </button>
+                                            <button className="remover-btn crud-btn">
+                                                Remover
+                                            </button> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            })
 
+                        ) : (
+                            repos.map(function(cl){
+                                return <tr key={cl.id}>
+                                    <td><strong>{cl.id}</strong></td>
+                                    <td>{cl.nome}</td>
+                                    <td>{cl.regiao}</td>
+                                    <td>{cl.nivel}</td>
+                                    <td>{cl.email}</td>
+                                    <td>{cl.telefone}</td>
+                                    <td>
+                                        <div className="box-btn">
+                                            <button className="editar-btn crud-btn">
+                                                Editar
+                                            </button>
+                                            <button className="remover-btn crud-btn">
+                                                Remover
+                                            </button> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            })
+                        )
+                    }
+                    {
+                        
+                    }
+                </tbody>
             </table>
         </div>
     </main>
