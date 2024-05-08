@@ -14,7 +14,7 @@ function Clientes(){
   
     useEffect(() => {
       setRepos(clientes);
-    }, [clientes]); // Add clientes to the dependency array
+    }, [clientes]);
   
     const filteredRepos = repos.filter(
       (repo) =>
@@ -85,7 +85,7 @@ function Clientes(){
                 </thead>
                 <tbody>
                     {filteredRepos.map((cl) => (
-                        <tr key={cl.id}>
+                        <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
                         <td>
                             <strong>{cl.id}</strong>
                         </td>

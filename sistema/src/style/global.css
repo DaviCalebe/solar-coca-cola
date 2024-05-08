@@ -41,7 +41,7 @@ main{
 .search-box{
     display: flex;
     align-items: center;
-    width: 800px;
+    width: 80%;
     background-color: white;
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -77,25 +77,35 @@ input:focus {
 }
 
 .table-box{
-    max-width: 90%;
-    border: 1px solid #ccc;
-    padding: 40px;
-    border-radius: 20px;
+    width: 98%;
     margin: 0 auto;
+}
+
+.white-line{
+    background-color: whitesmoke;
+}
+
+.grey-line{
+    background-color: #c2c2c2;
 }
 
 table{
     width: 100%;
 }
 
+thead{
+    padding: 20px;
+    background-color: #AE111B;
+}
+
 thead th{
     text-align: start;
-    padding: 0 15px;
+    padding: 15px;
 }
 
 td{
     border-bottom: 1px solid #ccc;
-    padding: 15px;
+    padding: 5px;
 }
 
 .text-red{
