@@ -11,6 +11,7 @@ function Produtos(){
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
         setRepos(produtos);
@@ -20,7 +21,8 @@ function Produtos(){
         (repo) =>
           repo.nome.toLowerCase().includes(search.toLowerCase()) &&
           (selectedRegion === "" || repo.regiao === selectedRegion) &&
-          (selectedLevel === "" || repo.nivel === selectedLevel)
+          (selectedLevel === "" || repo.nivel === selectedLevel) &&
+          (selectedCategory === "" || repo.categoria === selectedCategory)
       );
 
     return <main>
@@ -68,9 +70,10 @@ function Produtos(){
             <select name="categoria"
             id="categoria"
             className="produtos-select"
+            onChange={(e) => setSelectedCategory(e.target.value)}
             >
-                <option value="refrigerantes">Refrigerantes</option>
-                <option value="águas">Águas</option>
+                <option value="Refrigerantes">Refrigerantes</option>
+                <option value="Águas">Águas</option>
             </select>
 
             <button className="crud-btn">
