@@ -50,7 +50,7 @@ const clientes = [
   {
     id: 7,
     nome: "Farmácia Popular",
-    regiao: "Centro",
+    regiao: "Centro-Oeste",
     nivel: "Bronze",
     email: "contato@farmaciapopular.com",
     telefone: "(xx) xxxx-xxxx",
@@ -82,7 +82,7 @@ const clientes = [
   {
     id: 11,
     nome: "Supermercado Top",
-    regiao: "Centro",
+    regiao: "Centro-Oeste",
     nivel: "Ouro",
     email: "contato@supermercadotop.com",
     telefone: "(xx) xxxx-xxxx",
@@ -114,7 +114,7 @@ const clientes = [
   {
     id: 15,
     nome: "Empório da Economia",
-    regiao: "Centro",
+    regiao: "Centro-Oeste",
     nivel: "Ouro",
     email: "contato@emporiodaeconomia.com",
     telefone: "(xx) xxxx-xxxx",

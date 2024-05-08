@@ -8,14 +8,20 @@ import {clientes} from "../../dados.jsx";
 function Clientes(){
 
     const [repos, setRepos] = useState([]);
-    const [search, setSearch] = useState('');
-    const filteredRepos = search.length > 0
-    ? repos.filter(repo => repo.nome.toLowerCase().includes(search.toLowerCase()))
-    : [];
-
+    const [search, setSearch] = useState("");
+    const [selectedRegion, setSelectedRegion] = useState("");
+    const [selectedLevel, setSelectedLevel] = useState("");
+  
     useEffect(() => {
-        setRepos(clientes);
-    }, []);
+      setRepos(clientes);
+    }, [clientes]); // Add clientes to the dependency array
+  
+    const filteredRepos = repos.filter(
+      (repo) =>
+        repo.nome.toLowerCase().includes(search.toLowerCase()) &&
+        (selectedRegion === "" || repo.regiao === selectedRegion) &&
+        (selectedLevel === "" || repo.nivel === selectedLevel)
+    );
 
     return <main>
         <Sidebar />
@@ -33,18 +39,30 @@ function Clientes(){
 
             </div>
 
-            <select name="nivel" id="nivel" className="clientes-select">
-                <option value="ouro">Ouro</option>
-                <option value="prata">Prata</option>
-                <option value="bronze">Bronze</option>
+            <select
+            name="nivel"
+            id="nivel"
+            className="clientes-select"
+            onChange={(e) => setSelectedLevel(e.target.value)}
+            >
+                <option value="">Todos os níveis</option>
+                <option value="Ouro">Ouro</option>
+                <option value="Prata">Prata</option>
+                <option value="Bronze">Bronze</option>
             </select>
 
-            <select name="regiao" id="regiao" className="clientes-select">
-                <option value="norte">Norte</option>
-                <option value="nordeste">Nordeste</option>
-                <option value="centro-oeste">Centro-Oeste</option>
-                <option value="sudeste">Sudeste</option>
-                <option value="sul">Sul</option>
+            <select
+            name="regiao"
+            id="regiao"
+            className="clientes-select"
+            onChange={(e) => setSelectedRegion(e.target.value)}
+            >
+                <option value="">Todas as regiões</option>
+                <option value="Norte">Norte</option>
+                <option value="Nordeste">Nordeste</option>
+                <option value="Centro-Oeste">Centro-Oeste</option>
+                <option value="Sudeste">Sudeste</option>
+                <option value="Sul">Sul</option>
             </select>
 
             <button className="crud-btn">
@@ -66,56 +84,24 @@ function Clientes(){
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        search.length > 0 ? (
-
-                            filteredRepos.map(function(cl){
-                                return <tr key={cl.id}>
-                                    <td><strong>{cl.id}</strong></td>
-                                    <td>{cl.nome}</td>
-                                    <td>{cl.regiao}</td>
-                                    <td>{cl.nivel}</td>
-                                    <td>{cl.email}</td>
-                                    <td>{cl.telefone}</td>
-                                    <td>
-                                        <div className="box-btn">
-                                            <button className="editar-btn crud-btn">
-                                                Editar
-                                            </button>
-                                            <button className="remover-btn crud-btn">
-                                                Remover
-                                            </button> 
-                                        </div>
-                                    </td>
-                                </tr>
-                            })
-
-                        ) : (
-                            repos.map(function(cl){
-                                return <tr key={cl.id}>
-                                    <td><strong>{cl.id}</strong></td>
-                                    <td>{cl.nome}</td>
-                                    <td>{cl.regiao}</td>
-                                    <td>{cl.nivel}</td>
-                                    <td>{cl.email}</td>
-                                    <td>{cl.telefone}</td>
-                                    <td>
-                                        <div className="box-btn">
-                                            <button className="editar-btn crud-btn">
-                                                Editar
-                                            </button>
-                                            <button className="remover-btn crud-btn">
-                                                Remover
-                                            </button> 
-                                        </div>
-                                    </td>
-                                </tr>
-                            })
-                        )
-                    }
-                    {
-                        
-                    }
+                    {filteredRepos.map((cl) => (
+                        <tr key={cl.id}>
+                        <td>
+                            <strong>{cl.id}</strong>
+                        </td>
+                        <td>{cl.nome}</td>
+                        <td>{cl.regiao}</td>
+                        <td>{cl.nivel}</td>
+                        <td>{cl.email}</td>
+                        <td>{cl.telefone}</td>
+                        <td>
+                            <div className="box-btn">
+                            <button className="editar-btn crud-btn">Editar</button>
+                            <button className="remover-btn crud-btn">Remover</button>
+                            </div>
+                        </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
