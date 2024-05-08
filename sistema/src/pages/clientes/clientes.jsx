@@ -86,20 +86,20 @@ function Clientes(){
                 <tbody>
                     {filteredRepos.map((cl) => (
                         <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
-                        <td>
-                            <strong>{cl.id}</strong>
-                        </td>
-                        <td>{cl.nome}</td>
-                        <td>{cl.regiao}</td>
-                        <td>{cl.nivel}</td>
-                        <td>{cl.email}</td>
-                        <td>{cl.telefone}</td>
-                        <td>
-                            <div className="box-btn">
-                            <button className="editar-btn crud-btn">Editar</button>
-                            <button className="remover-btn crud-btn">Remover</button>
-                            </div>
-                        </td>
+                            <td>
+                                <strong>{cl.id}</strong>
+                            </td>
+                            <td>{cl.nome}</td>
+                            <td>{cl.regiao}</td>
+                            <td>{cl.nivel}</td>
+                            <td>{cl.email}</td>
+                            <td>{cl.telefone}</td>
+                            <td>
+                                <div className="box-btn">
+                                    <button className="editar-btn crud-btn">Editar</button>
+                                    <button className="remover-btn crud-btn">Remover</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
