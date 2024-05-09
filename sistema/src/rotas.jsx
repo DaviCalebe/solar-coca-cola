@@ -4,6 +4,7 @@ import Clientes from "./pages/clientes/clientes.jsx";
 import Produtos from "./pages/produtos/produtos.jsx";
 import Promocao from "./pages/promocao/promocao.jsx";
 import Relatorios from "./pages/relatorio/relatorios.jsx";
+import Teste from "./pages/teste/teste.jsx";
 
 
 function Rotas() {
@@ -14,6 +15,7 @@ function Rotas() {
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/promocao" element ={<Promocao />} />
             <Route path="/relatorios" element ={<Relatorios />} />
+            <Route path="/teste" element={<Teste />} />
 
         </Routes>
     </BrowserRouter>
