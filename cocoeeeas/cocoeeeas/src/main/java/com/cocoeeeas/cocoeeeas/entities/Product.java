@@ -5,19 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
-import java.util.UUID;
 
 
 @Entity
-@Table(name ="tb_produtos")
+@Table(name ="tb_product")
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Produtos {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +23,11 @@ public class Produtos {
 
     private String name;
 
-    private String categoria;
+    private String category;
 
-    private Integer quantidade_ml;
+    private Integer quantity_ml;
 
-    private Long quantidade_estoque;
+    private Long stock_quantity;
 
 
 

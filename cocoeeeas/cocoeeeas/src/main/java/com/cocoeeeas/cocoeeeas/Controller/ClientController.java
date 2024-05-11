@@ -29,7 +29,7 @@ public class ClientController {
     @PostMapping("/add")
     public ResponseEntity<String> addClient(@RequestBody Client client) {
         clientService.addClient(client);
-        return ResponseEntity.ok("Cliente com ID " + client.getId() + " Adicionado com sucesso.");
+        return ResponseEntity.ok("Client with ID" + client.getId() + " successfully added.");
     }
 
     @PutMapping("/update/{id}")
@@ -41,7 +41,7 @@ public class ClientController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteClient(@PathVariable long id) {
         clientService.DeleteClient(id);
-        return ResponseEntity.ok("Cliente com ID " + id + " deletado com sucesso.");
+        return ResponseEntity.ok("Client with ID " + id + " successfully deleted.");
 
     }
 

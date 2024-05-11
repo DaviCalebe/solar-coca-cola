@@ -35,11 +35,11 @@ public class Client {
     private String email;
 
 
-    private String numero_Telefone;
+    private String phone_number;
 
     @ManyToOne
-    @JoinColumn(name = "regiao")
-    private Regiao regiao;
+    @JoinColumn(name = "region")
+    private Region region;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "level_id")

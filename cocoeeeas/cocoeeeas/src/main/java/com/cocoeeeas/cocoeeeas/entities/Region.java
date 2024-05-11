@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name ="tb_regiao")
+@Table(name ="tb_region")
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Regiao {
+public class Region {
 
     @Id
     @Column(unique = true)

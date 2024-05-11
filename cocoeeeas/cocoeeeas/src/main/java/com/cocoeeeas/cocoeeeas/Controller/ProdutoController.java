@@ -1,51 +1,52 @@
 package com.cocoeeeas.cocoeeeas.Controller;
 
 
-import com.cocoeeeas.cocoeeeas.Repository.ProdutoRepository;
-import com.cocoeeeas.cocoeeeas.Service.ProdutoService;
-import com.cocoeeeas.cocoeeeas.entities.Produtos;
+
+import com.cocoeeeas.cocoeeeas.Service.ProductService;
+import com.cocoeeeas.cocoeeeas.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/Produtos")
+@RequestMapping("/Products")
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService produtoService;
+    private ProductService productService;
 
     @GetMapping
-    public List<Produtos> getProdutos()
+    public List<Product> getProducts()
     {
-        return produtoService.getProdutos();
+        return productService.getProducts();
     }
 
     @GetMapping("/{id}")
-    public Produtos getProdutoById(@PathVariable long id)
+    public Product getProductById(@PathVariable long id)
     {
-        return produtoService.getProduto(id);
+        return productService.getProduct(id);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addProduto(@RequestBody Produtos produto)
+    public ResponseEntity<String> addProduct(@RequestBody Product product)
     {
-        produtoService.addProduto(produto);
-        return ResponseEntity.ok("Produto com ID " + produto.getId() + " Adicionado com sucesso.");
+        productService.addProduct(product);
+        return ResponseEntity.ok("Product with ID " + product.getId() + "successfully added.");
     }
 
     @PutMapping("/update/{id}")
-    public Produtos updateProduto(@PathVariable long id, @RequestBody Produtos produto)
+    public Product updateProduct(@PathVariable long id, @RequestBody Product product)
     {
-        return produtoService.updateProduto(id, produto);
+        return productService.updateProduct(id, product);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteProduto(@PathVariable long id)
+    public ResponseEntity<String> deleteProduct(@PathVariable long id)
     {
-        produtoService.deleteProduct(id);
-        return ResponseEntity.ok("Produto com ID " + id + " deletado com sucesso.");
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Product with ID " + id + "successfully deleted.");
     }
 }
