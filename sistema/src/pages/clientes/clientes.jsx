@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import { useState, useEffect } from "react";
-import { listClients } from "../../services/api.js";
+import api from "../../services/api.js"
 
 function Clientes(){
 
@@ -11,14 +11,29 @@ function Clientes(){
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
-  
-    useEffect (() => {
-        listClients().then((response) => {
+
+    useEffect(() => {
+        api.get('/clients').then((response) => {
             setRepos(response.data);
-        }).catch(error => {
-            console.error(error);
         })
     }, [])
+
+    const handleAddClient = async () => {
+        try {
+          const response = await api.post('/clients/add', {
+            name: 'New Client',
+            region: { name: 'New Region' },
+            level: { name: 'New Level' },
+            cnpj: '12345678901234',
+            email: 'newclient@example.com',
+            phone_number: '123456789',
+          });
+      
+          setRepos([...repos, response.data]);
+        } catch (error) {
+          console.error(error);
+        }
+      };
   
     const filteredRepos = repos.filter(
       (repo) =>
@@ -69,7 +84,7 @@ function Clientes(){
                 <option value="Sul">Sul</option>
             </select>
 
-            <button className="crud-btn">
+            <button className="crud-btn" onClick={handleAddClient}>
                 + Adicionar novo
             </button>
         </div>
