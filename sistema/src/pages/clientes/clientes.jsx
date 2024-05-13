@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import { useState, useEffect } from "react";
-import {clientes} from "../../dados.jsx";
+import { listClients } from "../../services/api.js";
 
 function Clientes(){
 
@@ -12,15 +12,19 @@ function Clientes(){
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
   
-    useEffect(() => {
-      setRepos(clientes);
-    }, [clientes]);
+    useEffect (() => {
+        listClients().then((response) => {
+            setRepos(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    }, [])
   
     const filteredRepos = repos.filter(
       (repo) =>
-        repo.nome.toLowerCase().includes(search.toLowerCase()) &&
-        (selectedRegion === "" || repo.regiao === selectedRegion) &&
-        (selectedLevel === "" || repo.nivel === selectedLevel)
+        repo.name.toLowerCase().includes(search.toLowerCase()) &&
+        (selectedRegion === "" || repo.region.name === selectedRegion) &&
+        (selectedLevel === "" || repo.level.name === selectedLevel)
     );
 
     return <main>
@@ -78,6 +82,7 @@ function Clientes(){
                         <th>Nome</th>
                         <th>Região</th>
                         <th>Nível</th>
+                        <th>CNPJ</th>
                         <th>E-mail</th>
                         <th>Telefone</th>
                         <th>Opções</th>
@@ -89,11 +94,12 @@ function Clientes(){
                             <td>
                                 <strong>{cl.id}</strong>
                             </td>
-                            <td>{cl.nome}</td>
-                            <td>{cl.regiao}</td>
-                            <td>{cl.nivel}</td>
+                            <td>{cl.name}</td>
+                            <td>{cl.region.name}</td>
+                            <td>{cl.level.name}</td>
+                            <td>{cl.cnpj}</td>
                             <td>{cl.email}</td>
-                            <td>{cl.telefone}</td>
+                            <td>{cl.phone_number}</td>
                             <td>
                                 <div className="box-btn">
                                     <button className="editar-btn crud-btn">Editar</button>
