@@ -7,14 +7,14 @@ import api from "../../services/api.js"
 
 function Clientes(){
 
-    const [repos, setRepos] = useState([]);
+    const [clients, setClients] = useState([]);
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
 
     useEffect(() => {
         api.get('/clients').then((response) => {
-            setRepos(response.data);
+            setClients(response.data);
         })
     }, [])
 
@@ -29,13 +29,13 @@ function Clientes(){
             phone_number: '123456789',
           });
       
-          setRepos([...repos, response.data]);
+          setClients([...clients, response.data]);
         } catch (error) {
           console.error(error);
         }
       };
   
-    const filteredRepos = repos.filter(
+    const filteredRepos = clients.filter(
       (repo) =>
         repo.name.toLowerCase().includes(search.toLowerCase()) &&
         (selectedRegion === "" || repo.region.name === selectedRegion) &&
@@ -93,7 +93,6 @@ function Clientes(){
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nome</th>
                         <th>Região</th>
                         <th>Nível</th>
@@ -106,9 +105,6 @@ function Clientes(){
                 <tbody>
                     {filteredRepos.map((cl) => (
                         <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
-                            <td>
-                                <strong>{cl.id}</strong>
-                            </td>
                             <td>{cl.name}</td>
                             <td>{cl.region.name}</td>
                             <td>{cl.level.name}</td>

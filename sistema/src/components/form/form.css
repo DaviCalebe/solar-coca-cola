@@ -1,0 +1,62 @@
+.background-red{
+    width: 85vw;
+    height: 60vh;
+    background-color: #AE111B;
+    transform: rotate(-3deg);
+    position: absolute;
+    z-index: 9;
+    border-radius: 10px;
+}
+
+.crud-form-create{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 85vw;
+    height: 60vh;
+    background-color: #d9d9d9;
+    position: absolute;
+    z-index: 10;
+    border-radius: 10px;
+}
+
+.form-title{
+    text-align: center;
+    color: #AE111B;
+}
+
+.form-inputers{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+}
+
+.crud-form-input{
+    padding: 0 10px;
+    height: 2rem;
+    border: none;
+}
+
+.crud-form-select{
+    height: 2rem;
+}
+
+.form-submit{
+    display: flex;
+    justify-content: center;
+    align-self: end;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+    padding: 10px 10px;
+    background-color: #AE111B;
+    color: whitesmoke;
+    border: none;
+    border-radius: 3px;
+}
+
+.form-submit:hover{
+    background-color: rgba(174, 17, 27, 0.8);
+}
