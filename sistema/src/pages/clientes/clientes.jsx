@@ -2,8 +2,9 @@ import "./clientes.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
-import { useState, useEffect } from "react";
 import api from "../../services/api.js"
+import Modal from "../../components/modal/modal.jsx";
+import { useState, useEffect } from "react";
 
 function Clientes(){
 
@@ -11,6 +12,7 @@ function Clientes(){
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         api.get('/clients').then((response) => {
@@ -84,10 +86,12 @@ function Clientes(){
                 <option value="Sul">Sul</option>
             </select>
 
-            <button className="crud-btn" onClick={handleAddClient}>
+            <button className="crud-btn" onClick={() => setOpenModal(true)}>
                 + Adicionar novo
             </button>
         </div>
+
+        <Modal isOpen={openModal}/>
         
         <div className="table-box box-clientes">
             <table>
