@@ -92,7 +92,7 @@ function Clientes(){
         </div>
 
         <Modal isOpen={openModal}/>
-        
+         
         <div className="table-box box-clientes">
             <table>
                 <thead>
