@@ -30,3 +30,5 @@ INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Fanta 
 INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Schweppes', 1000, 100,'Refrigerantes');
 INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Água Mineral Bonafont', 2000, 100,'Águas');
 
+INSERT INTO tb_price (price_Total,product_id,Client_id) VALUES (20.00,2,2);
+INSERT INTO tb_price (price_Total,product_id,Client_id) VALUES (20.00,1,1);
