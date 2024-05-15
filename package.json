@@ -1,0 +1,18 @@
+{
+  "name": "start-both",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.jsx",
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"cd cocoeeeas/cocoeeeas && npm run start:backend\"",
+    "start:frontend": "cd sistema && npm run dev",
+    "start:backend": "cd cocoeeeas/cocoeeeas && mvn spring-boot:run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
