@@ -22,8 +22,8 @@ function Clientes(){
         try {
           const response = await api.post('/clients/add', {
             name: 'New Client',
-            region: { name: 'New Region' },
-            level: { name: 'New Level' },
+            region: { id: '1' },
+            level: { id: '1'},
             cnpj: '12345678901234',
             email: 'newclient@example.com',
             phone_number: '123456789',
@@ -35,12 +35,12 @@ function Clientes(){
         }
       };
   
-    const filteredRepos = clients.filter(
-      (repo) =>
-        repo.name.toLowerCase().includes(search.toLowerCase()) &&
-        (selectedRegion === "" || repo.region.name === selectedRegion) &&
-        (selectedLevel === "" || repo.level.name === selectedLevel)
-    );
+      const filteredRepos = clients.filter(
+        (repo) =>
+          repo.name && repo.name.toLowerCase().includes(search.toLowerCase()) &&
+          (selectedRegion === "" || (repo.region && repo.region.name === selectedRegion)) &&
+          (selectedLevel === "" || (repo.level && repo.level.name === selectedLevel))
+      );
 
     return <main>
         <Sidebar />
@@ -103,22 +103,23 @@ function Clientes(){
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredRepos.map((cl) => (
-                        <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
-                            <td>{cl.name}</td>
-                            <td>{cl.region.name}</td>
-                            <td>{cl.level.name}</td>
-                            <td>{cl.cnpj}</td>
-                            <td>{cl.email}</td>
-                            <td>{cl.phone_number}</td>
-                            <td>
-                                <div className="box-btn">
-                                    <button className="editar-btn crud-btn">Editar</button>
-                                    <button className="remover-btn crud-btn">Remover</button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
+                {filteredRepos.map((cl) => (
+    <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
+        <td>{cl.name}</td>
+        <td>{cl.region ? cl.region.name : ''}</td>
+        <td>{cl.level ? cl.level.name : ''}</td>
+        <td>{cl.cnpj}</td>
+        <td>{cl.email}</td>
+        <td>{cl.phone_number}</td>
+        <td>
+            <div className="box-btn">
+                <button className="editar-btn crud-btn">Editar</button>
+                <button className="remover-btn crud-btn">Remover</button>
+            </div>
+        </td>
+    </tr>
+))}
+
                 </tbody>
             </table>
         </div>

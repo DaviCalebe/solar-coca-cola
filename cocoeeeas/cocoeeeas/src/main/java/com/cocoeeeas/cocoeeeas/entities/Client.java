@@ -38,7 +38,7 @@ public class Client {
     private String phone_number;
 
     @ManyToOne
-    @JoinColumn(name = "region")
+    @JoinColumn(name = "region_id")
     private Region region;
 
     @ManyToOne(fetch = FetchType.EAGER)
