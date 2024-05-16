@@ -84,7 +84,6 @@ function Produtos(){
         <div className="table-box box-produtos">
             <table>
                 <thead>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Estoque</th>
                     <th>Preço</th>
@@ -94,7 +93,6 @@ function Produtos(){
                 <tbody>
                     {filteredRepos.map((prod) => (
                             <tr key={prod.id} className={prod.id % 2 === 0 ? 'white-line' : 'grey-line'}>
-                                <td><strong>{prod.id}</strong></td>
                                 <td>{prod.nome}</td>
                                 <td>{prod.quantidadeAtual}/{prod.quantidadeMaxima}</td>
                                 <td>{new Intl.NumberFormat('pt-BR',

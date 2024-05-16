@@ -91,7 +91,7 @@ function Clientes(){
             </button>
         </div>
 
-        <Modal isOpen={openModal}/>
+        <Modal isOpen={openModal} setOpenModal={(value) => setOpenModal(false)} />
          
         <div className="table-box box-clientes">
             <table>

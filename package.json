@@ -5,9 +5,9 @@
   "main": "main.jsx",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"npm run start:frontend\" \"cd cocoeeeas/cocoeeeas && npm run start:backend\"",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:frontend": "cd sistema && npm run dev",
-    "start:backend": "cd cocoeeeas/cocoeeeas && mvn spring-boot:run",
+    "start:backend": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
