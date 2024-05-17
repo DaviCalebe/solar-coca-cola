@@ -25,10 +25,12 @@ INSERT INTO tb_client(Cnpj,level_id, name, email,phone_number,region_id) VALUES 
 INSERT INTO tb_client(Cnpj,level_id, name, email,phone_number,region_id) VALUES ('58.201.735/0001-52',3, 'Empório da Economia', 'contato@emporiodaeconomia.com','(60) 6789-0123',3);
 
 
-INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Coca-Cola', 2000, 90,'Refrigerantes');
-INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Fanta Uva', 350, 120,'Refrigerantes');
-INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Schweppes', 1000, 100,'Refrigerantes');
-INSERT INTO tb_product(name,quantity_ml, stock_quantity,category)VALUES ('Água Mineral Bonafont', 2000, 100,'Águas');
+INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Garrafa Coca-Cola', 2000, 90,200,'Refrigerantes',10.00);
+INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Garrafa Fanta Uva', 350, 120,200,'Refrigerantes',9.00);
+INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Garrafa Fanta Laranja', 1000, 100,150,'Refrigerantes',9.00);
+INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Lata Schweppes', 1000, 100,100,'Refrigerantes',5.00);
+INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Água Mineral Bonafont', 2000, 100,250,'Águas',3.50);
+INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Água Mineral Bonafont', 2000, 100,250,'Águas',3.50);
 
 INSERT INTO tb_price (price_Total,product_id,Client_id) VALUES (20.00,2,2);
 INSERT INTO tb_price (price_Total,product_id,Client_id) VALUES (20.00,1,1);

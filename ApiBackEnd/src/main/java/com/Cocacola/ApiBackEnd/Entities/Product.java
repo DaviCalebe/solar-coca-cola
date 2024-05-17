@@ -30,6 +30,8 @@ public class Product {
 
     private Long stock_quantity;
 
+    private Long stock_Max;
 
+    private double price;
 
 }
