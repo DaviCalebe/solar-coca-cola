@@ -20,17 +20,17 @@ function Clientes(){
         })
     }, [])
 
-    const handleAddClient = async () => {
+    const handleAddClient = async (name, region, level, cnpj, email, phoneNumber) => {
         try {
           const response = await api.post('/clients/add', {
-            name: 'New Client',
-            region: { id: '1' },
-            level: { id: '1'},
-            cnpj: '12345678901234',
-            email: 'newclient@example.com',
-            phone_number: '123456789',
+            name,
+            region: { id: region },
+            level: { id: level },
+            cnpj,
+            email,
+            phone_number: phoneNumber,
           });
-      
+          
           setClients([...clients, response.data]);
         } catch (error) {
           console.error(error);
@@ -91,8 +91,8 @@ function Clientes(){
             </button>
         </div>
 
-        <Modal isOpen={openModal} setOpenModal={(value) => setOpenModal(false)} />
-         
+        <Modal isOpen={openModal} setOpenModal={(value) => setOpenModal(false)} handleAddClient={handleAddClient}/>
+
         <div className="table-box box-clientes">
             <table>
                 <thead>
