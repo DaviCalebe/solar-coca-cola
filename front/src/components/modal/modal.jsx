@@ -20,6 +20,7 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
             <h1>+ Adicionar novo cliente</h1>
           </div>
           <div className="modal-inputers">
+
             <h3>Nome</h3>
             <input 
               className="crud-modal-input" 
@@ -28,6 +29,7 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               value={name} 
               onChange={(e) => setName(e.target.value)} 
             />
+
             <h3>Região</h3>
             <select 
               className="crud-modal-select" 
@@ -43,6 +45,7 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               <option value={4}>Sudeste</option>
               <option value={5}>Sul</option>
             </select>
+
             <h3>Nível</h3>
             <select 
               className="crud-modal-select" 
@@ -57,6 +60,7 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               <option value={2}>Prata</option>
               <option value={3}>Bronze</option>
             </select>
+
             <h3>CNPJ</h3>
             <input 
               className="crud-modal-input" 
@@ -65,6 +69,7 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               value={cnpj} 
               onChange={(e) => setCnpj(e.target.value)} 
             />
+
             <h3>E-mail</h3>
             <input 
               className="crud-modal-input" 
@@ -73,6 +78,7 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
             />
+            
             <h3>Telefone</h3>
             <input 
               className="crud-modal-input" 
