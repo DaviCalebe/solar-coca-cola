@@ -7,7 +7,8 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
   const [level, setLevel] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phone_number, setPhone_number
+  ] = useState('');
 
   if (isOpen) {
     return (
@@ -35,11 +36,12 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               value={region} 
               onChange={(e) => setRegion(e.target.value)}
             >
-              <option value="Norte">Norte</option>
-              <option value="Nordeste">Nordeste</option>
-              <option value="Centro-Oeste">Centro-Oeste</option>
-              <option value="Sudeste">Sudeste</option>
-              <option value="Sul">Sul</option>
+              <option value="">Selecione uma região</option>
+              <option value={1}>Norte</option>
+              <option value={2}>Nordeste</option>
+              <option value={3}>Centro-Oeste</option>
+              <option value={4}>Sudeste</option>
+              <option value={5}>Sul</option>
             </select>
             <h3>Nível</h3>
             <select 
@@ -48,10 +50,12 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               id="level" 
               value={level} 
               onChange={(e) => setLevel(e.target.value)}
+              
             >
-              <option value="Ouro">Ouro</option>
-              <option value="Prata">Prata</option>
-              <option value="Bronze">Bronze</option>
+              <option value="">Selecione um nível</option>
+              <option value={1}>Ouro</option>
+              <option value={2}>Prata</option>
+              <option value={3}>Bronze</option>
             </select>
             <h3>CNPJ</h3>
             <input 
@@ -74,15 +78,18 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
               className="crud-modal-input" 
               type="tel" 
               placeholder="(00) 00000-0000" 
-              value={phoneNumber} 
-              onChange={(e) => setPhoneNumber(e.target.value)} 
+              value={phone_number} 
+              onChange={(e) => setPhone_number
+                (e.target.value)} 
             />
           </div>
           <div className="modal-buttons">
             <button className="modal-button cancel" onClick={() => setOpenModal(false)}>CANCELAR</button>
             <button 
               className="modal-button submit" 
-              onClick={() => handleAddClient(name, region, level, cnpj, email, phoneNumber)}
+              onClick={() => {
+                handleAddClient(name, region, level, cnpj, email, phone_number);
+              }}
             >ADICIONAR</button>
           </div>
         </div>

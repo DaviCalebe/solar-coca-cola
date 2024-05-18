@@ -20,7 +20,7 @@ function Clientes(){
         })
     }, [])
 
-    const handleAddClient = async (name, region, level, cnpj, email, phoneNumber) => {
+    const handleAddClient = async (name, region, level, cnpj, email, phone_number) => {
         try {
           const response = await api.post('/clients/add', {
             name,
@@ -28,9 +28,8 @@ function Clientes(){
             level: { id: level },
             cnpj,
             email,
-            phone_number: phoneNumber,
+            phone_number
           });
-          
           setClients([...clients, response.data]);
         } catch (error) {
           console.error(error);
