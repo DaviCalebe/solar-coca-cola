@@ -45,7 +45,7 @@
 
 .modal-title{
     text-align: center;
-    color: #AE111B;
+    color: white;
 }
 
 .modal-inputers{
@@ -91,6 +91,10 @@
     font-weight: bold;
 }
 
+.modal-button:hover{
+    cursor: pointer;
+}
+
 .cancel{
     background-color: #c2c2c2;
     color: black;
@@ -98,6 +102,16 @@
 
 .cancel:hover{
     background-color: rgba(194, 194, 194, 0.8);
+}
+
+.submit:disabled{
+    background-color: #c2c2c2;
+    color: black;
+    cursor: not-allowed;
+}
+
+.submit:disabled:hover{
+    background-color: #c2c2c2;
 }
 
 .submit{

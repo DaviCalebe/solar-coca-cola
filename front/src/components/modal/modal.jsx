@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./modal.css";
 
 export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
@@ -7,8 +7,17 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
   const [level, setLevel] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [email, setEmail] = useState('');
-  const [phone_number, setPhone_number
-  ] = useState('');
+  const [phone_number, setPhone_number] = useState('');
+
+  const [liberar, setLiberar] = useState(false);
+/*   const [errorMessage, setErrorMessage] = useState("");
+ */
+  useEffect(function(){
+    if (name && region && level && cnpj && email && phone_number)
+        setLiberar(true)
+    else
+        setLiberar(false);
+  }, [name, region, level, cnpj, email, phone_number]);
 
   if (isOpen) {
     return (
@@ -64,12 +73,20 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
             <h3>CNPJ</h3>
             <input 
               className="crud-modal-input" 
-              type="number" 
+              type="text" 
               placeholder="00.000.000/0000-00" 
               value={cnpj} 
-              onChange={(e) => setCnpj(e.target.value)} 
+              onChange={(e) => setCnpj(e.target.value)}
+/*               onBlur={(e) => {
+                if (!/^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}-[0-9]{2}$/.test(e.target.value)) {
+                  setErrorMessage("Insira um CNPJ válido (00.000.000/0000-00)");
+                } else {
+                  setErrorMessage("");
+                }
+              }} */
             />
-
+{/*             {errorMessage && <span>{errorMessage}</span>}
+ */}
             <h3>E-mail</h3>
             <input 
               className="crud-modal-input" 
@@ -91,12 +108,25 @@ export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
           </div>
           <div className="modal-buttons">
             <button className="modal-button cancel" onClick={() => setOpenModal(false)}>CANCELAR</button>
-            <button 
-              className="modal-button submit" 
-              onClick={() => {
-                handleAddClient(name, region, level, cnpj, email, phone_number);
-              }}
-            >ADICIONAR</button>
+            {
+              liberar ?
+                <button
+                className="modal-button submit" 
+                onClick={() => {
+                  handleAddClient(name, region, level, cnpj, email, phone_number);
+                  setOpenModal(false);
+                }}
+              >ADICIONAR</button>
+              :
+                <button
+                disabled
+                className="modal-button submit" 
+                onClick={() => {
+                  handleAddClient(name, region, level, cnpj, email, phone_number);
+                  setOpenModal(false);
+                }}
+              >ADICIONAR</button>
+            }
           </div>
         </div>
       </div>
