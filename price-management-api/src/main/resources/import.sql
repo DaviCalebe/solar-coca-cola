@@ -31,6 +31,3 @@ INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price
 INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Lata Schweppes', 1000, 100,100,'Refrigerantes',5.00);
 INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Água Mineral Bonafont', 2000, 100,250,'Águas',3.50);
 INSERT INTO tb_product(name,quantity_ml, stock_quantity,stock_Max,category,price)VALUES ('Água Mineral Bonafont', 2000, 100,250,'Águas',3.50);
-
-INSERT INTO tb_price (price_Total,product_id,Client_id) VALUES (20.00,2,2);
-INSERT INTO tb_price (price_Total,product_id,Client_id) VALUES (20.00,1,1);

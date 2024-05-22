@@ -1,4 +1,4 @@
-package com.Cocacola.pricemanagementapi.config;
+/* package com.Cocacola.pricemanagementapi.config;
 
 import com.Cocacola.pricemanagementapi.Entities.Level;
 import com.Cocacola.pricemanagementapi.Entities.Region;
@@ -42,3 +42,4 @@ public class Instantiation implements CommandLineRunner {
 
     }
 }
+*/
