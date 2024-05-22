@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LevelRepository extends JpaRepository<Level, Long> {
-   /*  @Modifying
+     @Modifying
     @Query(
             value = "ALTER TABLE tb_level AUTO_INCREMENT = 1",
             nativeQuery = true
     )
     void resetSequence();
-    */
+    
 }

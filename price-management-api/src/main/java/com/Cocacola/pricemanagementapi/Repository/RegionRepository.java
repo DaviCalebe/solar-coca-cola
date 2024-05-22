@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RegionRepository extends JpaRepository<Region, Long> {
-    /*@Modifying
+    @Modifying
     @Query(
             value = "ALTER TABLE tb_region AUTO_INCREMENT = 1",
             nativeQuery = true
     )
     void resetSequence();
-    */
+    
 }
