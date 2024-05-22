@@ -44,7 +44,7 @@ function Clientes(){
 
       const handleUpdateClient = async (id, updatedClientData) => {
         try {
-          const response = await api.put(`/clients/${id}`, updatedClientData);
+          const response = await api.put(`/clients/update/${id}`, updatedClientData);
           console.log(`Cliente atualizado com sucesso!`, response.data);
         } catch (error) {
           console.error(`Erro ao atualizar cliente: ${error.message}`);
@@ -53,7 +53,7 @@ function Clientes(){
 
       const handleDeleteClient = async (id) => {
         try {
-            await api.delete(`/clients/${id}`);
+            await api.delete(`/clients/delete/${id}`);
             console.log(`Cliente ${id} excluído com sucesso`);
         } catch(error) {
             console.log(`Erro ao deletar o cliente ${id}`)
