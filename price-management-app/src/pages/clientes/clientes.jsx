@@ -2,7 +2,7 @@ import "./clientes.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
-import api from "../../services/api.js"
+import api from "../../services/clients-services.js"
 import Modal from "../../components/modal/modal.jsx";
 import { useState, useEffect } from "react";
 
@@ -14,11 +14,16 @@ function Clientes(){
     const [selectedLevel, setSelectedLevel] = useState("");
     const [openModal, setOpenModal] = useState(false);
 
-    useEffect(() => {
-        api.get('/clients').then((response) => {
-            setClients(response.data);
-        })
-    }, [])
+    const fetchClients = async () => {
+        const response = await api.get('/clients');
+        return response.data;
+      };
+
+      useEffect(() => {
+        fetchClients().then((clients) => {
+          setClients(clients);
+        });
+      }, []);
 
     const handleAddClient = async (name, region, level, cnpj, email, phone_number) => {
         try {
@@ -35,7 +40,26 @@ function Clientes(){
           console.error(error);
         }
       };
-  
+
+
+      const handleUpdateClient = async (id, updatedClientData) => {
+        try {
+          const response = await api.put(`/clients/${id}`, updatedClientData);
+          console.log(`Cliente atualizado com sucesso!`, response.data);
+        } catch (error) {
+          console.error(`Erro ao atualizar cliente: ${error.message}`);
+        }
+      };
+
+      const handleDeleteClient = async (id) => {
+        try {
+            await api.delete(`/clients/${id}`);
+            console.log(`Cliente ${id} excluído com sucesso`);
+        } catch(error) {
+            console.log(`Erro ao deletar o cliente ${id}`)
+        }
+      }
+      
       const filteredRepos = clients.filter(
         (repo) =>
           repo.name && repo.name.toLowerCase().includes(search.toLowerCase()) &&
@@ -117,7 +141,7 @@ function Clientes(){
         <td>
             <div className="box-btn">
                 <button className="editar-btn crud-btn">Editar</button>
-                <button className="remover-btn crud-btn">Remover</button>
+                <button className="remover-btn crud-btn" onClick={() => handleDeleteClient(cl.id)}>Excluir</button>
             </div>
         </td>
     </tr>
