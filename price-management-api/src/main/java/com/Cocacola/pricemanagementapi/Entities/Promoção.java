@@ -14,40 +14,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Entity
-@Table(name ="tb_client")
+@Table(name ="tb_promocao")
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Client {
-
+public class Promoção {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Cnpj;
-
-    private String name;
-
-    private String email;
-
-
-    private String phone_number;
 
     @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region region;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "level_id")
-    private Level level;
-
-    @ManyToMany
     @JoinColumn( name ="product_id")
     private Product product;
-    
 
+    
 }
