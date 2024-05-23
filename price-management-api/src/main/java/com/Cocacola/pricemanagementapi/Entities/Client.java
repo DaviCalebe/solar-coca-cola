@@ -45,7 +45,7 @@ public class Client {
     @JoinColumn(name = "level_id")
     private Level level;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn( name ="product_id")
     private Product product;
     
