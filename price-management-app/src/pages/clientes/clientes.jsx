@@ -4,6 +4,7 @@ import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import api from "../../services/clients-services.js"
 import AddModal from "../../components/modals/addClientModal.jsx";
+import DeleteModal from "../../components/modals/deleteClientModal.jsx";
 import { useState, useEffect } from "react";
 
 function Clientes(){
@@ -12,7 +13,9 @@ function Clientes(){
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
-    const [openModal, setOpenModal] = useState(false);
+    const [openAddModal, setOpenAddModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
 
     const fetchClients = async () => {
         const response = await api.get('/clients');
@@ -108,12 +111,13 @@ function Clientes(){
                 <option value="Sul">Sul</option>
             </select>
 
-            <button className="crud-btn" onClick={() => setOpenModal(true)}>
+            <button className="crud-btn" onClick={() => setOpenAddModal(true)}>
                 + Adicionar novo
             </button>
         </div>
 
-        <AddModal isOpen={openModal} setOpenModal={(value) => setOpenModal(false)} handleAddClient={handleAddClient}/>
+        <AddModal isOpen={openAddModal} setOpenAddModal={(value) => setOpenAddModal(false)} handleAddClient={handleAddClient}/>
+        <DeleteModal isOpen={openDeleteModal} setOpenDeleteModal={(value) => setOpenAddModal(false)} handleDeleteClient={handleDeleteClient} />
 
         <div className="table-box box-clientes">
             <table>
@@ -140,7 +144,12 @@ function Clientes(){
         <td>
             <div className="box-btn">
                 <button className="editar-btn crud-btn">Editar</button>
-                <button className="remover-btn crud-btn" onClick={() => handleDeleteClient(cl.id)}>Excluir</button>
+                <button
+                  className="remover-btn crud-btn"
+                  onClick={() => setOpenDeleteModal(true, cl)}
+                  >
+                    Excluir
+                </button>
             </div>
         </td>
     </tr>

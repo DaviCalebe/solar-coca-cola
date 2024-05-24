@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./addClientModal.css";
 
-export default function AddModal({ isOpen, setOpenModal, handleAddClient }) {
+export default function AddModal({ isOpen, setOpenAddModal, handleAddClient }) {
   const [name, setName] = useState('');
   const [region, setRegion] = useState('');
   const [level, setLevel] = useState('');
@@ -107,14 +107,14 @@ export default function AddModal({ isOpen, setOpenModal, handleAddClient }) {
             />
           </div>
           <div className="modal-buttons">
-            <button className="modal-button cancel" onClick={() => setOpenModal(false)}>CANCELAR</button>
+            <button className="modal-button cancel" onClick={() => setOpenAddModal(false)}>CANCELAR</button>
             {
               liberar ?
                 <button
                 className="modal-button submit" 
                 onClick={() => {
                   handleAddClient(name, region, level, cnpj, email, phone_number);
-                  setOpenModal(false);
+                  setOpenAddModal(false);
                 }}
               >ADICIONAR</button>
               :
@@ -123,7 +123,7 @@ export default function AddModal({ isOpen, setOpenModal, handleAddClient }) {
                 className="modal-button submit" 
                 onClick={() => {
                   handleAddClient(name, region, level, cnpj, email, phone_number);
-                  setOpenModal(false);
+                  setOpenAddModal(false);
                 }}
               >ADICIONAR</button>
             }
