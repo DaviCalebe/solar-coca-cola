@@ -15,7 +15,7 @@ function Clientes(){
     const [selectedLevel, setSelectedLevel] = useState("");
     const [openAddModal, setOpenAddModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-
+    const [selectedClient, setSelectedClient] = useState(null);
 
     const fetchClients = async () => {
         const response = await api.get('/clients');
@@ -55,12 +55,12 @@ function Clientes(){
 
       const handleDeleteClient = async (id) => {
         try {
-            await api.delete(`/clients/delete/${id}`);
-            console.log(`Cliente ${id} excluído com sucesso`);
-        } catch(error) {
-            console.log(`Erro ao deletar o cliente ${id}`)
+          await api.delete(`/clients/delete/${id}`);
+          console.log(`Cliente ${id} excluído com sucesso`);
+        } catch (error) {
+          console.log(`Erro ao deletar o cliente ${id}`);
         }
-      }
+      };
       
       const filteredRepos = clients.filter(
         (repo) =>
@@ -117,7 +117,12 @@ function Clientes(){
         </div>
 
         <AddModal isOpen={openAddModal} setOpenAddModal={(value) => setOpenAddModal(false)} handleAddClient={handleAddClient}/>
-        <DeleteModal isOpen={openDeleteModal} setOpenDeleteModal={(value) => setOpenAddModal(false)} handleDeleteClient={handleDeleteClient} />
+        <DeleteModal
+        isOpen={openDeleteModal}
+        setOpenDeleteModal={(value) => setOpenAddModal(false)}
+        handleDeleteClient={handleDeleteClient}
+        client={selectedClient}
+      />
 
         <div className="table-box box-clientes">
             <table>
@@ -146,9 +151,12 @@ function Clientes(){
                 <button className="editar-btn crud-btn">Editar</button>
                 <button
                   className="remover-btn crud-btn"
-                  onClick={() => setOpenDeleteModal(true, cl)}
-                  >
-                    Excluir
+                  onClick={() => {
+                    setSelectedClient(cl);
+                    setOpenDeleteModal(true);
+                  }}
+                >
+                  Excluir
                 </button>
             </div>
         </td>
