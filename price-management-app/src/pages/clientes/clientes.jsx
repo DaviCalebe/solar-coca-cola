@@ -5,6 +5,7 @@ import lupa from "../../assets/lupa.svg";
 import api from "../../services/clients-services.js"
 import AddModal from "../../components/modals/addClientModal.jsx";
 import DeleteModal from "../../components/modals/deleteClientModal.jsx";
+import UpdateModal from "../../components/modals/updateClientModal.jsx";
 import { useState, useEffect } from "react";
 
 function Clientes(){
@@ -14,8 +15,10 @@ function Clientes(){
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
     const [openAddModal, setOpenAddModal] = useState(false);
+    const [openUpdateModal, setOpenUpdateModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [selectedClient, setSelectedClient] = useState(null);
+    const [selectedClientToUpdate, setSelectedClientToUpdate] = useState(null);
 
     const fetchClients = async () => {
         const response = await api.get('/clients');
@@ -116,13 +119,33 @@ function Clientes(){
             </button>
         </div>
 
-        <AddModal isOpen={openAddModal} setOpenAddModal={(value) => setOpenAddModal(false)} handleAddClient={handleAddClient}/>
+        <AddModal
+        isOpen={openAddModal}
+        setOpenAddModal={setOpenAddModal}
+        handleAddClient={handleAddClient}
+        selectedClient={selectedClientToUpdate}
+        />
+
+        <UpdateModal
+          isOpen={openUpdateModal}
+          setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
+          handleUpdateClient={handleUpdateClient}
+          selectedClient={selectedClient}
+        />
+        
         <DeleteModal
         isOpen={openDeleteModal}
         setOpenDeleteModal={(value) => setOpenAddModal(false)}
         handleDeleteClient={handleDeleteClient}
         client={selectedClient}
-      />
+        />
+
+{/*         <UpdateModal
+        isOpen={openUpdateModal}
+        setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
+        handleUpdateClient={handleUpdateClient}
+        selectedClient={selectedClient}
+        /> */}
 
         <div className="table-box box-clientes">
             <table>
@@ -148,7 +171,7 @@ function Clientes(){
         <td>{cl.phone_number}</td>
         <td>
             <div className="box-btn">
-                <button className="editar-btn crud-btn">Editar</button>
+                <button className="editar-btn crud-btn" onClick={() => {setOpenUpdateModal(true); setSelectedClientToUpdate(cl); console.log(selectedClient)}}>Editar</button>
                 <button
                   className="remover-btn crud-btn"
                   onClick={() => {

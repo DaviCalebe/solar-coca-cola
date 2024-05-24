@@ -1,6 +1,12 @@
 import "./deleteClientModal.css";
 
-export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteClient, client }) {
+export default function DeleteModal({ isOpen, openDeleteModal, setOpenDeleteModal, handleDeleteClient, client }) {
+
+  const handleCancel = () => {
+    setOpenDeleteModal(false)
+    console.log(openDeleteModal = false)
+  }
+
   if (isOpen) {
     return (
       <div className="modal">
@@ -11,7 +17,7 @@ export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteCl
           </div>
           <p>Você realmente deseja excluir este Cliente? Esta ação não poderá ser desfeita.</p>
           <div className="modal-buttons">
-            <button className="modal-button cancel" onClick={() => setOpenDeleteModal(false)}>CANCELAR</button>
+            <button className="modal-button cancel" onClick={handleCancel}>CANCELAR</button>
             <button
               className="modal-button delete"
               onClick={() => {

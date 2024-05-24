@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import "./addClientModal.css";
 
-export default function AddModal({ isOpen, setOpenAddModal, handleAddClient }) {
-  const [name, setName] = useState('');
-  const [region, setRegion] = useState('');
-  const [level, setLevel] = useState('');
-  const [cnpj, setCnpj] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone_number, setPhone_number] = useState('');
+export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, selectedClient }) {
+  const [name, setName] = useState(selectedClient ? selectedClient.name : '');
+  const [region, setRegion] = useState(selectedClient ? selectedClient.region.id.toString() : '');
+  const [level, setLevel] = useState(selectedClient ? selectedClient.level.id.toString() : '');
+  const [cnpj, setCnpj] = useState(selectedClient ? selectedClient.cnpj : '');
+  const [email, setEmail] = useState(selectedClient ? selectedClient.email : '');
+  const [phone_number, setPhone_number] = useState(selectedClient ? selectedClient.phone_number : '');
 
   const [liberar, setLiberar] = useState(false);
 /*   const [errorMessage, setErrorMessage] = useState("");
