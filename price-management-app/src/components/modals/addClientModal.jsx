@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./addClientModal.css";
 
-export default function Modal({ isOpen, setOpenModal, handleAddClient }) {
+export default function AddModal({ isOpen, setOpenModal, handleAddClient }) {
   const [name, setName] = useState('');
   const [region, setRegion] = useState('');
   const [level, setLevel] = useState('');

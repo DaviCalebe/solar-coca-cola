@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import api from "../../services/clients-services.js"
-import Modal from "../../components/modals/addClientModal.jsx";
+import AddModal from "../../components/modals/addClientModal.jsx";
 import { useState, useEffect } from "react";
 
 function Clientes(){
@@ -113,7 +113,7 @@ function Clientes(){
             </button>
         </div>
 
-        <Modal isOpen={openModal} setOpenModal={(value) => setOpenModal(false)} handleAddClient={handleAddClient}/>
+        <AddModal isOpen={openModal} setOpenModal={(value) => setOpenModal(false)} handleAddClient={handleAddClient}/>
 
         <div className="table-box box-clientes">
             <table>

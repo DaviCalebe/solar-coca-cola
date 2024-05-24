@@ -1,0 +1,31 @@
+.crud-modal-delete{
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 35vw;
+    height: 15vh;
+    background-color: #1a1f23;
+    color: white;
+    position: absolute;
+    z-index: 100;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.delete-modal-title{
+    color: #AE111B;
+    border-bottom: 1px solid gray;
+}
+
+.delete{
+    background-color: #AE111B;
+}
+
+.delete:hover{
+    background-color: rgba(174, 17, 27, 0.8);
+}
