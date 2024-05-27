@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
 import "./updateModal.css";
 
-export default function UpdateModal({ isOpen, setOpenUpdateModal }) {
+export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateClient, selectedClient, setSelectedClient }) {
   const [name, setName] = useState('');
   const [region, setRegion] = useState('');
   const [level, setLevel] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [email, setEmail] = useState('');
   const [phone_number, setPhone_number] = useState('');
+
+  useEffect(() => {
+    if (selectedClient) {
+      setName(selectedClient.name);
+      setRegion(selectedClient.region.id);
+      setLevel(selectedClient.level.id);
+      setCnpj(selectedClient.cnpj);
+      setEmail(selectedClient.email);
+      setPhone_number(selectedClient.phone_number);
+    }
+  }, [selectedClient]);
 
   if (isOpen) {
     return (
@@ -101,10 +112,11 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal }) {
             <button
             className="modal-button submit" 
             onClick={() => {
-              handleUpdateClient(name, region, level, cnpj, email, phone_number);
+              console.log(selectedClient)
+              handleUpdateClient(selectedClient);
               setOpenUpdateModal(false);
             }}
-          >ADICIONAR</button>
+          >ATUALIZAR</button>
           </div>
         </div>
       </div>

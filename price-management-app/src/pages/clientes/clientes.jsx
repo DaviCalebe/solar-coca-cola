@@ -46,9 +46,10 @@ function Clientes(){
         }
       };
 
-      const handleUpdateClient = async (id, updatedClientData) => {
+      const handleUpdateClient = async (client) => {
         try {
-          const response = await api.put(`/clients/update/${id}`, updatedClientData);
+          const response = await api.put(`/clients/update/${client.id}`, client);
+          setSelectedClient(client)
           console.log(`Cliente atualizado com sucesso!`, response.data);
         } catch (error) {
           console.error(`Erro ao atualizar cliente: ${error.message}`);
@@ -125,8 +126,13 @@ function Clientes(){
         handleDeleteClient={handleDeleteClient}
         client={selectedClient}
       />
-      <UpdateModal isOpen={openUpdateModal} setOpenUpdateModal={(value) => setOpenUpdateModal(false)}/>
-
+      <UpdateModal
+        isOpen={openUpdateModal}
+        setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
+        handleUpdateClient={handleUpdateClient}
+        selectedClient={selectedClient}
+        setSelectedClient={setSelectedClient}
+      />
 
         <div className="table-box box-clientes">
             <table>
@@ -152,7 +158,7 @@ function Clientes(){
         <td>{cl.phone_number}</td>
         <td>
             <div className="box-btn">
-                <button className="editar-btn crud-btn" onClick={() => setOpenUpdateModal(true)}>Editar</button>
+                <button className="editar-btn crud-btn" onClick={() => {handleUpdateClient(cl); setOpenUpdateModal(true)}}>Editar</button>
                 <button
                   className="remover-btn crud-btn"
                   onClick={() => {
