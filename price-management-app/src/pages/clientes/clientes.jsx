@@ -49,8 +49,9 @@ function Clientes(){
       const handleUpdateClient = async (client) => {
         try {
           const response = await api.put(`/clients/update/${client.id}`, client);
-          setSelectedClient(client)
-          console.log(`Cliente atualizado com sucesso!`, response.data);
+          setSelectedClient(client);
+/*           fazer com que o client chamado acima possa ser alterado, pois o selectedClient está sendo chamado no modal e mostrando as informações dele nos input
+ */          console.log(response.data);
         } catch (error) {
           console.error(`Erro ao atualizar cliente: ${error.message}`);
         }

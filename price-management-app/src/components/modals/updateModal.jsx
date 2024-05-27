@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./updateModal.css";
 
-export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateClient, selectedClient, setSelectedClient }) {
+export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateClient, selectedClient, updatedClient }) {
   const [name, setName] = useState('');
   const [region, setRegion] = useState('');
   const [level, setLevel] = useState('');
@@ -19,6 +19,23 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateCl
       setPhone_number(selectedClient.phone_number);
     }
   }, [selectedClient]);
+
+  const handleSubmit = () => {
+    const { id } = selectedClient;
+    const { name, region, level, cnpj, email, phone_number } = selectedClient;
+  
+    const updatedClient = {
+      id,
+      name: name || "",
+      region: { id: region || "" },
+      level: { id: level || "" },
+      cnpj: cnpj || "",
+      email: email || "",
+      phone_number: phone_number || "",
+    };
+  
+    handleUpdateClient(updatedClient);
+  };
 
   if (isOpen) {
     return (
@@ -112,8 +129,8 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateCl
             <button
             className="modal-button submit" 
             onClick={() => {
-              console.log(selectedClient)
-              handleUpdateClient(selectedClient);
+              console.log(updatedClient);
+              handleSubmit();
               setOpenUpdateModal(false);
             }}
           >ATUALIZAR</button>
