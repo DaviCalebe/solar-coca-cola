@@ -22,6 +22,7 @@ function Clientes(){
         return response.data;
       };
 
+      
       useEffect(() => {
         fetchClients().then((clients) => {
           setClients(clients);
