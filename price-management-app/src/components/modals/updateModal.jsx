@@ -98,25 +98,13 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal }) {
           </div>
           <div className="modal-buttons">
             <button className="modal-button cancel" onClick={() => setOpenUpdateModal(false)}>CANCELAR</button>
-            {
-              liberar ?
-                <button
-                className="modal-button submit" 
-                onClick={() => {
-                  handleUpdateClient(name, region, level, cnpj, email, phone_number);
-                  setOpenUpdateModal(false);
-                }}
-              >ADICIONAR</button>
-              :
-                <button
-                disabled
-                className="modal-button submit" 
-                onClick={() => {
-                  handleUpdateClient(name, region, level, cnpj, email, phone_number);
-                  setOpenUpdateModal(false);
-                }}
-              >ADICIONAR</button>
-            }
+            <button
+            className="modal-button submit" 
+            onClick={() => {
+              handleUpdateClient(name, region, level, cnpj, email, phone_number);
+              setOpenUpdateModal(false);
+            }}
+          >ADICIONAR</button>
           </div>
         </div>
       </div>

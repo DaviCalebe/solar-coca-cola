@@ -24,7 +24,6 @@ function Clientes(){
         return response.data;
       };
 
-      
       useEffect(() => {
         fetchClients().then((clients) => {
           setClients(clients);
@@ -153,7 +152,7 @@ function Clientes(){
         <td>{cl.phone_number}</td>
         <td>
             <div className="box-btn">
-                <button className="editar-btn crud-btn" onClick={setOpenUpdateModal(true)}>Editar</button>
+                <button className="editar-btn crud-btn" onClick={() => setOpenUpdateModal(true)}>Editar</button>
                 <button
                   className="remover-btn crud-btn"
                   onClick={() => {
