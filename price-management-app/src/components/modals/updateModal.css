@@ -1,0 +1,109 @@
+
+
+.background-red{
+    width: 55vw;
+    height: 60vh;
+    background-color: #AE111B;
+    position: absolute;
+    z-index: 99;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-3deg);
+}
+
+.crud-modal-create {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 55vw;
+    height: 60vh;
+    background-color: #1a1f23;
+    color: white;
+    position: absolute;
+    z-index: 100;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.modal-title{
+    text-align: center;
+    color: white;
+}
+
+.modal-inputers{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+}
+
+.crud-modal-input{
+    padding: 0 10px;
+    height: 2rem;
+    border: 2px solid transparent;
+    border-radius: 3px;
+}
+
+.crud-modal-input:focus{
+    border: 2px solid #AE111B;
+}
+
+.crud-modal-select{
+    height: 2rem;
+    border: 2px solid transparent;
+    border-radius: 3px;
+}
+
+.modal-buttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-button{
+    display: flex;
+    justify-content: center;
+    align-self: end;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    width: 10rem;
+    padding: 10px 10px;
+    color: whitesmoke;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.modal-button:hover{
+    cursor: pointer;
+}
+
+.cancel{
+    background-color: #c2c2c2;
+    color: black;
+}
+
+.cancel:hover{
+    background-color: rgba(194, 194, 194, 0.8);
+}
+
+.submit:disabled{
+    background-color: #c2c2c2;
+    color: black;
+    cursor: not-allowed;
+}
+
+.submit:disabled:hover{
+    background-color: #c2c2c2;
+}
+
+.submit{
+    background-color: #AE111B;
+}
+
+.submit:hover{
+    background-color: rgba(174, 17, 27, 0.8);
+}
