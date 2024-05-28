@@ -12,22 +12,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name ="tb_promocao")
 
+@Entity
+@Table(name = "tb_promotionRegions")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Promoção {
-    
+public class PromotionRegions {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn( name ="product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "region_id", nullable = false)
+    private Region region;
+
+    private double regionPrice;
 }

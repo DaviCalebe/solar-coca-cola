@@ -1,7 +1,5 @@
 package com.Cocacola.pricemanagementapi.Entities;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,40 +11,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Entity
-@Table(name ="tb_client")
-
+@Table(name = "tb_promotion")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Client {
+public class Promotion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Cnpj;
-
-    private String name;
-
-    private String email;
-
-
-    private String phone_number;
 
     @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region region;
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "level_id")
+    @ManyToOne
+    @JoinColumn(name = "level_id", nullable = false)
     private Level level;
 
-    @ManyToOne
-    @JoinColumn( name ="product_id")
-    private Product product;
-    
+    private double promotionalPrice;
 
+    private double promotionalPercent;
 }
