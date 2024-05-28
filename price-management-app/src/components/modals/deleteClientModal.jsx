@@ -11,7 +11,7 @@ export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteCl
           </div>
           <p>Você realmente deseja excluir este Cliente? Esta ação não poderá ser desfeita.</p>
           <div className="modal-buttons">
-            <button className="modal-button cancel" onClick={() => setOpenDeleteModal(false)}>CANCELAR</button>
+            <button className="modal-button cancel" onClick={() => {setOpenDeleteModal(false)}}>CANCELAR</button>
             <button
               className="modal-button delete"
               onClick={() => {

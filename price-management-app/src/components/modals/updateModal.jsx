@@ -22,8 +22,7 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateCl
 
   const handleSubmit = () => {
     const { id } = selectedClient;
-    const { name, region, level, cnpj, email, phone_number } = selectedClient;
-  
+
     const updatedClient = {
       id,
       name: name || "",
@@ -129,7 +128,6 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateCl
             <button
             className="modal-button submit" 
             onClick={() => {
-              console.log(updatedClient);
               handleSubmit();
               setOpenUpdateModal(false);
             }}
