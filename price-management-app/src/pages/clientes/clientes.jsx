@@ -46,31 +46,31 @@ function Clientes(){
         }
       };
 
-      const handleUpdateClient = async (client) => {
-        try {
-          const response = await api.put(`/clients/update/${client.id}`, client);
-          setSelectedClient(client);
-          console.log(response.data);
-        } catch (error) {
-          console.error(`Erro ao atualizar cliente: ${error.message}`);
-        }
-      };
+    const handleUpdateClient = async (client) => {
+      try {
+        const response = await api.put(`/clients/update/${client.id}`, client);
+        setSelectedClient(client);
+        console.log(response.data);
+      } catch (error) {
+        console.error(`Erro ao atualizar cliente: ${error.message}`);
+      }
+    };
 
-      const handleDeleteClient = async (id) => {
-        try {
-          await api.delete(`/clients/delete/${id}`);
-          console.log(`Cliente ${id} excluído com sucesso`);
-        } catch (error) {
-          console.log(`Erro ao deletar o cliente ${id}`);
-        }
-      };
-      
-      const filteredRepos = clients.filter(
-        (repo) =>
-          repo.name && repo.name.toLowerCase().includes(search.toLowerCase()) &&
-          (selectedRegion === "" || (repo.region && repo.region.name === selectedRegion)) &&
-          (selectedLevel === "" || (repo.level && repo.level.name === selectedLevel))
-      );
+    const handleDeleteClient = async (id) => {
+      try {
+        await api.delete(`/clients/delete/${id}`);
+        console.log(`Cliente ${id} excluído com sucesso`);
+      } catch (error) {
+        console.log(`Erro ao deletar o cliente ${id}`);
+      }
+    };
+    
+    const filteredRepos = clients.filter(
+      (repo) =>
+        repo.name && repo.name.toLowerCase().includes(search.toLowerCase()) &&
+        (selectedRegion === "" || (repo.region && repo.region.name === selectedRegion)) &&
+        (selectedLevel === "" || (repo.level && repo.level.name === selectedLevel))
+    );
 
     return <main>
         <Sidebar />
@@ -119,20 +119,24 @@ function Clientes(){
             </button>
         </div>
 
-        <AddModal isOpen={openAddModal} setOpenAddModal={(value) => setOpenAddModal(false)} handleAddClient={handleAddClient}/>
+        <AddModal
+        isOpen={openAddModal}
+        setOpenAddModal={(value) => setOpenAddModal(false)}
+        handleAddClient={handleAddClient}
+        />
+        <UpdateModal
+          isOpen={openUpdateModal}
+          setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
+          handleUpdateClient={handleUpdateClient}
+          selectedClient={selectedClient}
+          setSelectedClient={setSelectedClient}
+        />
         <DeleteModal
         isOpen={openDeleteModal}
         setOpenDeleteModal={(value) => setOpenAddModal(false)}
         handleDeleteClient={handleDeleteClient}
         client={selectedClient}
-      />
-      <UpdateModal
-        isOpen={openUpdateModal}
-        setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
-        handleUpdateClient={handleUpdateClient}
-        selectedClient={selectedClient}
-        setSelectedClient={setSelectedClient}
-      />
+        />
 
         <div className="table-box box-clientes">
             <table>
@@ -148,31 +152,37 @@ function Clientes(){
                     </tr>
                 </thead>
                 <tbody>
-                {filteredRepos.map((cl) => (
-    <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
-        <td>{cl.name}</td>
-        <td>{cl.region ? cl.region.name : ''}</td>
-        <td>{cl.level ? cl.level.name : ''}</td>
-        <td>{cl.cnpj}</td>
-        <td>{cl.email}</td>
-        <td>{cl.phone_number}</td>
-        <td>
-            <div className="box-btn">
-                <button className="editar-btn crud-btn" onClick={() => {handleUpdateClient(cl); setOpenUpdateModal(true)}}>Editar</button>
-                <button
-                  className="remover-btn crud-btn"
-                  onClick={() => {
-                    setSelectedClient(cl);
-                    setOpenDeleteModal(true);
-                  }}
-                >
-                  Excluir
-                </button>
-            </div>
-        </td>
-    </tr>
-))}
-
+                  {filteredRepos.map((cl) => (
+                    <tr key={cl.id} className={cl.id % 2 === 0 ? 'white-line' : 'grey-line'}>
+                        <td>{cl.name}</td>
+                        <td>{cl.region ? cl.region.name : ''}</td>
+                        <td>{cl.level ? cl.level.name : ''}</td>
+                        <td>{cl.cnpj}</td>
+                        <td>{cl.email}</td>
+                        <td>{cl.phone_number}</td>
+                        <td>
+                            <div className="box-btn">
+                                <button
+                                  className="editar-btn crud-btn"
+                                  onClick={() => {handleUpdateClient(cl);
+                                  setOpenUpdateModal(true)}}
+                                >
+                                  Editar
+                                </button>
+                                
+                                <button
+                                  className="remover-btn crud-btn"
+                                  onClick={() => {
+                                    setSelectedClient(cl);
+                                    setOpenDeleteModal(true);
+                                  }}
+                                >
+                                  Excluir
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                  ))}
                 </tbody>
             </table>
         </div>
