@@ -2,27 +2,34 @@ import "./produtos.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
+import api from "../../services/products-services.js"
 import { useState, useEffect } from "react";
-import {produtos} from "../../dados.jsx";
+
 
 function Produtos(){
 
-    const [repos, setRepos] = useState([]);
+    const [products, setProducts] = useState([]);
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
 
-    useEffect(() => {
-        setRepos(produtos);
-      }, [produtos]);
-    
-      const filteredRepos = repos.filter(
+    const fetchProducts = async () => {
+        const response = await api.get('/products');
+        return response.data;
+      };
+
+      useEffect(() => {
+        fetchProducts().then((products) => {
+          setProducts(products);
+        });
+      }, []);
+      const filteredRepos = products.filter(
         (repo) =>
-          repo.nome.toLowerCase().includes(search.toLowerCase()) &&
-          (selectedRegion === "" || repo.regiao === selectedRegion) &&
-          (selectedLevel === "" || repo.nivel === selectedLevel) &&
-          (selectedCategory === "" || repo.categoria === selectedCategory)
+          repo.name.toLowerCase().includes(search.toLowerCase()) &&
+          (selectedRegion === "" || repo.region.name === selectedRegion) &&
+          (selectedLevel === "" || repo.level.name === selectedLevel) &&
+          (selectedCategory === "" || repo.category === selectedCategory)
       );
 
     return <main>
@@ -84,20 +91,25 @@ function Produtos(){
         <div className="table-box box-produtos">
             <table>
                 <thead>
-                    <th>Nome</th>
-                    <th>Estoque</th>
-                    <th>Preço</th>
-                    <th>Categoria</th>
-                    <th>Opções</th>
+                    <tr>
+                        <th>Nome</th>
+                        <th>ML</th>
+                        <th>Estoque</th>
+                        <th>Preço</th>
+                        <th>Categoria</th>
+                        <th>Opções</th>
+                    </tr>
+                        
                 </thead>
                 <tbody>
                     {filteredRepos.map((prod) => (
                             <tr key={prod.id} className={prod.id % 2 === 0 ? 'white-line' : 'grey-line'}>
-                                <td>{prod.nome}</td>
-                                <td>{prod.quantidadeAtual}/{prod.quantidadeMaxima}</td>
+                                <td>{prod.name}</td>
+                                <td>{prod.quantity_ml} ml</td>
+                                <td>{prod.stock_quantity}/{prod.stock_Max}</td>
                                 <td>{new Intl.NumberFormat('pt-BR',
-                                            {style: 'currency', currency: "BRL"}).format(prod.preco)}</td>
-                                <td>{prod.categoria}</td>
+                                            {style: 'currency', currency: "BRL"}).format(prod.price)}</td>
+                                <td>{prod.category}</td>
                                 <div className="box-btn">
                                     <button className="editar-btn crud-btn">
                                         Editar
