@@ -29,54 +29,10 @@ public class PromotionService {
         return promotionRepository.findAll();
     }
 
-    double promotionalPercetage = 0;
-
-
-    @Transactional
-    public void generatePromotions() {
-        if(promotionRepository.count()==0){
-        List<Product> products = productRepository.findAll();
-        List<Level> levels = levelRepository.findAll();
-
-        for (Product product : products) {
-            for (Level level : levels) {
-
-                double promotionalPrice = calculatePromotionalPrice(product, level,null);
-
-                Promotion promotion = new Promotion();
-                promotion.setProduct(product);
-                promotion.setLevel(level);
-                promotion.setPromotionalPercent(level.getId() == 2 ? 20 : level.getId() == 3 ? 40 : 0);
-                promotion.setPromotionalPrice(promotionalPrice);
-                promotionRepository.save(promotion);
-            }
-        }
-    }
-    }
-
-    @Transactional
-    public void generatePromotion(Product product) {
-        List<Level> levels = levelRepository.findAll();
-
-        for (Level level : levels) {
-            double promotionalPrice = calculatePromotionalPrice(product, level,null);
-
-            Promotion promotion = new Promotion();
-            promotion.setProduct(product);
-            promotion.setLevel(level);
-            promotion.setPromotionalPrice(promotionalPrice);
-            promotion.setPromotionalPercent(level.getId() == 2 ? 20 : level.getId() == 3 ? 40 : 0);
-            promotionRepository.save(promotion);
-        }
-
-    }
 
     private double calculatePromotionalPrice(Product product, Level level, Double promotionalPerce) {
         double price = product.getPrice();
-        if (promotionalPerce == null) {
-            promotionalPerce = (double) (level.getId() == 2 ? 20 : level.getId() == 3 ? 40 : 0);
-        }
-
+      
         double total = price * (promotionalPerce / 100);
         return price - total;
     }

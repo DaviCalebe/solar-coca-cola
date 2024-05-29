@@ -34,7 +34,6 @@ public class ProductServiceImpl implements ProductService {
     public void addProduct(Product product) {
 
         productRepository.save(product);
-        promotionService.generatePromotion(product);
 
     }
 

@@ -22,12 +22,7 @@ public class PromotionController {
     public List<Promotion> getAllPromotions() {
         return promotionService.getPromotions();
     }
-
-    @PostMapping("/generate")
-    public ResponseEntity<Void> generatePromotions() {
-        promotionService.generatePromotions();
-        return ResponseEntity.noContent().build();
-    }
+  
     @PostMapping("/add")
     public ResponseEntity<Promotion> createPromotion(@RequestBody Promotion promotion) {
         Promotion savedPromotion = promotionService.save(promotion);
