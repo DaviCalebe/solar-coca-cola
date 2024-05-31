@@ -4,6 +4,7 @@ import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import api from "../../services/products-services.js"
 import AddModal from "../../components/modals/addModal.jsx";
+import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
 
 
@@ -139,6 +140,14 @@ function Produtos(){
         handleAddProduct={handleAddProduct}
         mode={'product'}
         />
+
+        <DeleteModal
+        isOpen={openDeleteModal}
+        setOpenDeleteModal={(value) => setOpenAddModal(false)}
+        handleDeleteProduct={handleDeleteProduct}
+        mode={'product'}
+        clientOrPromotionOrProduct={{ product: selectedProduct}}
+        />
         
         <div className="table-box box-produtos">
             <table>
@@ -167,7 +176,11 @@ function Produtos(){
                                         <button className="editar-btn crud-btn">
                                             Editar
                                         </button>
-                                        <button className="remover-btn crud-btn">
+                                        <button className="remover-btn crud-btn"
+                                        onClick={() => {
+                                            setSelectedProduct(prod);
+                                            setOpenDeleteModal(true);
+                                          }}>
                                             Remover
                                         </button> 
                                     </div>
