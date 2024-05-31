@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 function Produtos(){
 
     const [products, setProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState (null);
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
@@ -24,6 +25,46 @@ function Produtos(){
           setProducts(products);
         });
       }, []);
+
+        const handleAddProduct = async (name, category, quantity_ml, stock_quantity, stock_Max, price) => {
+           try{
+            const response = await api.post('/products/add', {
+                name,
+                region: {id:region },
+                level: {id: level }, 
+                category,
+                quantity_ml,
+                stock_quantity,
+                stock_Max,
+                price
+            });
+            setProducts([...products, response.data])
+        }   catch (error){
+            console.error(error);
+        }
+    }
+
+        const handleUpdateProduct = async (product) => {
+            try{
+                const response = await api.put(`/products/update/${product.id}`, product);
+                setSelectedProduct(product);
+                console.log(response.data);
+            } catch (error) {
+                console.error(`Erro ao atualizar promoção: ${error.message}`);
+            }
+        };
+
+        const handleDeleteProduct = async (id) => {
+            try{
+                await api.delete(`/products/delete/${id}`);
+                console.log(`Produto ${id} excluído com sucesso`);
+            } catch (error) {
+                console.log(`Erro ao deletar o produto ${id}`);
+            }
+        };
+
+
+
       const filteredRepos = products.filter(
         (repo) =>
           repo.name.toLowerCase().includes(search.toLowerCase()) &&
@@ -126,5 +167,6 @@ function Produtos(){
         </div>
     </main>
 }
+
 
 export default Produtos;
