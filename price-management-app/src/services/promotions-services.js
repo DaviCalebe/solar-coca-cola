@@ -21,17 +21,17 @@ export const fetchPromotions = async () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-/*   export const handleUpdatePromotion = async () => {
-    try {
-      const response = await api.put(`/promotions/update/${client.id}`, client);
-      setSelectedClient(client);
+  export const handleUpdatePromotion = async (promotion) => {
+    try{
+      const response = await api.put(`/promotions/update/${promotion.id}`, promotion);
+      setSelectedPromotion (promotion);
       console.log(response.data);
-    } catch (error) {
+    }catch (error) {
       console.error(`Erro ao atualizar promoção: ${error.message}`);
     }
-  } */
+  };
 
   export const handleDeletePromotion = async (id) => {
     try {
@@ -40,4 +40,4 @@ export const fetchPromotions = async () => {
     } catch (error) {
       console.log(`Erro ao deletar a promoção ${id}`);
     }
-  }
+  };

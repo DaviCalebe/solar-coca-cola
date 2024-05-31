@@ -9,7 +9,7 @@ import { fetchPromotions, handleAddPromotion, handleDeletePromotion } from "../.
 function Promocao() {
 
   const [promotions, setPromotions] = useState([]);
-  const [selectedPromotion, setSelectedPromotion] = useState([]);
+  const [selectedPromotion, setSelectedPromotion] = useState(null);
   const [search, setSearch] = useState("");
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
