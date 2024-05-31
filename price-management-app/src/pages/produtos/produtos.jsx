@@ -68,8 +68,6 @@ function Produtos(){
             }
         };
 
-
-
       const filteredRepos = products.filter(
         (repo) =>
           repo.name.toLowerCase().includes(search.toLowerCase()) &&

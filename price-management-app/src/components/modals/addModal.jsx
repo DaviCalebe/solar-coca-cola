@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./addModal.css";
 
-export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mode }) {
+export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, handleAddProduct, handleAddPromotion, mode }) {
   const [name, setName] = useState('');
   const [region, setRegion] = useState('');
   const [level, setLevel] = useState('');
@@ -14,7 +14,6 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
   const [stock_Max, setStock_Max] = useState ('');
   const [price, setPrice] = useState('');
   const [productID, setProductID] = useState('');
-  const [levelID, setLevelID] = useState('');
   const [promotionalPercent, setPromotionalPercent] = useState('');
   
   const [liberar, setLiberar] = useState(false);
@@ -161,14 +160,17 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
                   <option value={3}>Bronze</option>
                 </select>
 
-                <h3>Category</h3>
-                <input 
-                  className="crud-modal-input" 
-                  type="text" 
-                  placeholder="Enter the category here..." 
+                <h3>Categoria</h3>
+                <select 
+                  className="crud-modal-select" 
+                  name="category" id="category" 
                   value={category} 
-                  onChange={(e) => setCategory(e.target.value)} 
-                />
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value="">Selecione uma categoria</option>
+                  <option value={"Refrigerantes"}>Refrigerantes</option>
+                  <option value={"Águas"}>Águas</option>
+                </select>
 
                 <h3>Quantidade em ML</h3>
                 <input 
