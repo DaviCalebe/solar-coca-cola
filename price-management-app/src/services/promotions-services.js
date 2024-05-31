@@ -9,3 +9,35 @@ export const fetchPromotions = async () => {
       return null;
     }
   };
+
+  export const handleAddPromotion = async (promotionalPercent) => {
+    try {
+      const response = await api.post('/promotions/add', {
+        product: { id: 1},
+        level: { id: 1},
+        promotionalPercent
+      });
+      setPromotions([...promotions, response.data]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+/*   export const handleUpdatePromotion = async () => {
+    try {
+      const response = await api.put(`/promotions/update/${client.id}`, client);
+      setSelectedClient(client);
+      console.log(response.data);
+    } catch (error) {
+      console.error(`Erro ao atualizar promoção: ${error.message}`);
+    }
+  } */
+
+  export const handleDeletePromotion = async (id) => {
+    try {
+      await api.delete(`/promotions/delete/${id}`);
+      console.log(`Promoção ${id} excluída com sucesso`);
+    } catch (error) {
+      console.log(`Erro ao deletar a promoção ${id}`);
+    }
+  }

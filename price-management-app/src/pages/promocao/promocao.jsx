@@ -1,11 +1,18 @@
 import "./promocao.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
+import lupa from "../../assets/lupa.svg";
+import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
-import { fetchPromotions } from "../../services/promotions-services.js";
+import { fetchPromotions, handleAddPromotion, handleDeletePromotion } from "../../services/promotions-services.js";
 
 function Promocao() {
+
   const [promotions, setPromotions] = useState([]);
+  const [selectedPromotion, setSelectedPromotion] = useState([]);
+  const [search, setSearch] = useState("");
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
 
   useEffect(() => {
     fetchPromotions().then((data) => {
@@ -17,14 +24,38 @@ function Promocao() {
     <main>
       <Sidebar />
       <Upbar title="Promoção" />
-      <div className="table-box box-clientes">
+
+      <div className="filter-options promotions-bar">
+
+        <div className="search-box">
+            <img src={lupa} alt="" />
+            <input type="text"
+            className="search-box-inside"
+            placeholder="Pesquisar..."
+            onChange={e => setSearch(e.target.value)}
+            value={search}
+            />
+        </div>
+
+      </div>
+
+
+      <DeleteModal
+      isOpen={openDeleteModal}
+      setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
+      handleDelete={handleDeletePromotion}
+      mode={'promotion'}
+      clientOrPromotionOrProduct={{ promotion: selectedPromotion }}
+     />
+
+      <div className="table-box box-promotions">
         <table>
           <thead>
             <tr>
               <th>ID do Produto</th>
               <th>Nome do Produto</th>
-              <th>Quantidade</th>
-              <th>Preço Inicial</th>
+              <th>Quantidade ML</th>
+              <th>Preço Original</th>
               <th>Preço Promocional</th>
               <th>Opções</th>
             </tr>
@@ -39,7 +70,12 @@ function Promocao() {
                                       {style: 'currency', currency: "BRL"}).format(promo.product.price)}</td>
                 <td>{new Intl.NumberFormat('pt-BR',
                                       {style: 'currency', currency: "BRL"}).format(promo.promotionalPrice)}</td>
-                <td>Opções</td>
+                <td>
+                  <div className="box-btn">
+                    <button className="editar-btn crud-btn">Promoção especial</button>
+                    <button className="remover-btn crud-btn" onClick={() => {setSelectedPromotion(promo.id); setOpenDeleteModal(true)}}>Resetar promoção</button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

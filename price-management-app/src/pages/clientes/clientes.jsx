@@ -3,9 +3,9 @@ import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import api from "../../services/clients-services.js"
-import AddModal from "../../components/modals/addClientModal.jsx";
+import AddModal from "../../components/modals/addModal.jsx";
 import UpdateModal from "../../components/modals/updateModal.jsx";
-import DeleteModal from "../../components/modals/deleteClientModal.jsx";
+import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
 
 function Clientes(){
@@ -114,7 +114,7 @@ function Clientes(){
                 <option value="Sul">Sul</option>
             </select>
 
-            <button className="crud-btn" onClick={() => setOpenAddModal(true)}>
+            <button className="add-btn crud-btn" onClick={() => setOpenAddModal(true)}>
                 + Adicionar novo
             </button>
         </div>
@@ -124,6 +124,7 @@ function Clientes(){
         setOpenAddModal={(value) => setOpenAddModal(false)}
         handleAddClient={handleAddClient}
         />
+
         <UpdateModal
           isOpen={openUpdateModal}
           setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
@@ -131,11 +132,13 @@ function Clientes(){
           selectedClient={selectedClient}
           setSelectedClient={setSelectedClient}
         />
+        
         <DeleteModal
         isOpen={openDeleteModal}
         setOpenDeleteModal={(value) => setOpenAddModal(false)}
-        handleDeleteClient={handleDeleteClient}
-        client={selectedClient}
+        handleDelete={handleDeleteClient}
+        mode={'client'}
+        clientOrPromotionOrProduct={selectedClient}
         />
 
         <div className="table-box box-clientes">

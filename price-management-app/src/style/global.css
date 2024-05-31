@@ -68,12 +68,18 @@ input:focus {
     display: flex;
     gap: 5px;
     align-items: center;
+    justify-content: space-around;
     padding: 3px;
 }
 
-.crud-btn{
-    height: 40px;
+.editar-btn, .remover-btn{
+    width: 40%;
+    height: 80%;
     padding: 5px;
+}
+
+.add-btn{
+    height: 40px;
 }
 
 .table-box{
