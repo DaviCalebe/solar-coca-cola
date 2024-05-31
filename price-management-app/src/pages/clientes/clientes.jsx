@@ -11,13 +11,13 @@ import { useState, useEffect } from "react";
 function Clientes(){
 
     const [clients, setClients] = useState([]);
+    const [selectedClient, setSelectedClient] = useState(null);
     const [search, setSearch] = useState("");
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
     const [openAddModal, setOpenAddModal] = useState(false);
     const [openUpdateModal, setOpenUpdateModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
-    const [selectedClient, setSelectedClient] = useState(null);
 
     const fetchClients = async () => {
         const response = await api.get('/clients');
@@ -123,6 +123,7 @@ function Clientes(){
         isOpen={openAddModal}
         setOpenAddModal={(value) => setOpenAddModal(false)}
         handleAddClient={handleAddClient}
+        mode={'client'}
         />
 
         <UpdateModal

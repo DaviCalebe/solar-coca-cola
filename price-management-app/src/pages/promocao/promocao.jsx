@@ -12,8 +12,7 @@ function Promocao() {
   const [selectedPromotion, setSelectedPromotion] = useState(null);
   const [search, setSearch] = useState("");
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-
-
+  
   useEffect(() => {
     fetchPromotions().then((data) => {
       setPromotions(data);

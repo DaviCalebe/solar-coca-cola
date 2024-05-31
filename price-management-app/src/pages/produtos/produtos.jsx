@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import api from "../../services/products-services.js"
+import AddModal from "../../components/modals/addModal.jsx";
 import { useState, useEffect } from "react";
 
 
@@ -14,6 +15,9 @@ function Produtos(){
     const [selectedRegion, setSelectedRegion] = useState("");
     const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [openAddModal, setOpenAddModal] = useState(false);
+    const [openUpdateModal, setOpenUpdateModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     const fetchProducts = async () => {
         const response = await api.get('/products');
@@ -124,10 +128,17 @@ function Produtos(){
                 <option value="Águas">Águas</option>
             </select>
 
-            <button className="crud-btn">
+            <button className="add-btn crud-btn" onClick={() => setOpenAddModal(true)}>
                 + Adicionar novo
             </button>
         </div>
+
+        <AddModal
+        isOpen={openAddModal}
+        setOpenAddModal={(value) => setOpenAddModal(false)}
+        handleAddProduct={handleAddProduct}
+        mode={'product'}
+        />
         
         <div className="table-box box-produtos">
             <table>
@@ -151,14 +162,16 @@ function Produtos(){
                                 <td>{new Intl.NumberFormat('pt-BR',
                                             {style: 'currency', currency: "BRL"}).format(prod.price)}</td>
                                 <td>{prod.category}</td>
-                                <div className="box-btn">
-                                    <button className="editar-btn crud-btn">
-                                        Editar
-                                    </button>
-                                    <button className="remover-btn crud-btn">
-                                        Remover
-                                    </button> 
-                                </div>
+                                <td>
+                                    <div className="box-btn">
+                                        <button className="editar-btn crud-btn">
+                                            Editar
+                                        </button>
+                                        <button className="remover-btn crud-btn">
+                                            Remover
+                                        </button> 
+                                    </div>
+                                </td>
                             </tr>
                         ))}
                 </tbody>
@@ -167,6 +180,5 @@ function Produtos(){
         </div>
     </main>
 }
-
 
 export default Produtos;

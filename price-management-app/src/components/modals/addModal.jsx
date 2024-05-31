@@ -8,26 +8,38 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
   const [cnpj, setCnpj] = useState('');
   const [email, setEmail] = useState('');
   const [phone_number, setPhone_number] = useState('');
-  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState ('');
+  const [quantity_ml, setQuantity_ml] = useState ('');
+  const [stock_quantity, setStock_Quantity] = useState('');
+  const [stock_Max, setStock_Max] = useState ('');
   const [price, setPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [discount, setDiscount] = useState('');
-  const [start_date, setStart_date] = useState('');
-  const [end_date, setEnd_date] = useState('');
-
+  const [productID, setProductID] = useState('');
+  const [levelID, setLevelID] = useState('');
+  const [promotionalPercent, setPromotionalPercent] = useState('');
+  
   const [liberar, setLiberar] = useState(false);
 
+  let dependencies = [];
+
+  if (mode === 'client') {
+    dependencies = [name, region, level, cnpj, email, phone_number];
+  } else if (mode === 'product') {
+    dependencies = [name, region, level, category, quantity_ml, stock_quantity, stock_Max, price];
+  } else if (mode === 'promotion') {
+    dependencies = [productID, level, promotionalPercent];
+  }
+  
   useEffect(function(){
     if (
       (mode === 'client' && name && region && level && cnpj && email && phone_number) ||
-      (mode === 'product' && name && description && price && quantity) ||
-      (mode === 'promotion' && name && discount && start_date && end_date)
+      (mode === 'product' && name && region && level && category && quantity_ml && stock_quantity && stock_Max && price) ||
+      (mode === 'promotion' && productID && level && promotionalPercent)
     ) {
       setLiberar(true)
     } else {
       setLiberar(false);
     }
-  }, [name, region, level, cnpj, email, phone_number, description, price, quantity, mode, discount, start_date, end_date]);
+  }, dependencies);
 
   if (isOpen) {
     return (
@@ -115,17 +127,74 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
                 <input 
                   className="crud-modal-input" 
                   type="text" 
-                  placeholder="Digite o nome aqui..." 
+                  placeholder="Digite o nome do produto aqui..." 
                   value={name} 
                   onChange={(e) => setName(e.target.value)} 
                 />
 
-                <h3>Descrição</h3>
-                <textarea 
-                  className="crud-modal-textarea" 
-                  placeholder="Digite a descrição aqui..." 
-                  value={description} 
-                  onChange={(e) => setDescription(e.target.value)} 
+                <h3>Região</h3>
+                <select 
+                  className="crud-modal-select" 
+                  name="region" 
+                  id="region" 
+                  value={region} 
+                  onChange={(e) => setRegion(e.target.value)}
+                >
+                  <option value="">Selecione uma região</option>
+                  <option value={1}>Norte</option>
+                  <option value={2}>Nordeste</option>
+                  <option value={3}>Centro-Oeste</option>
+                  <option value={4}>Sudeste</option>
+                  <option value={5}>Sul</option>
+                </select>
+
+                <h3>Nível</h3>
+                <select 
+                  className="crud-modal-select" 
+                  name="level" id="level" 
+                  value={level} 
+                  onChange={(e) => setLevel(e.target.value)}
+                >
+                  <option value="">Selecione um nível</option>
+                  <option value={1}>Ouro</option>
+                  <option value={2}>Prata</option>
+                  <option value={3}>Bronze</option>
+                </select>
+
+                <h3>Category</h3>
+                <input 
+                  className="crud-modal-input" 
+                  type="text" 
+                  placeholder="Enter the category here..." 
+                  value={category} 
+                  onChange={(e) => setCategory(e.target.value)} 
+                />
+
+                <h3>Quantidade em ML</h3>
+                <input 
+                  className="crud-modal-input" 
+                  type="number" 
+                  placeholder="Digite a quantidade em ML aqui..." 
+                  value={quantity_ml} 
+                  onChange={(e) => setQuantity_ml(e.target.value)} 
+                />
+
+                <h3>Quantidade de Estoque Atual</h3>
+                <input 
+                  className="crud-modal-input" 
+                  type="number" 
+                  placeholder="Digite a quantidade de estoque atual aqui..." 
+                  value={stock_quantity} 
+                  onChange={(e) => setStock_Quantity(e.target.value)} 
+                />
+
+                <h3>Quantidade de Estoque Máximo</h3>
+                <input 
+                  className="crud-modal-input" 
+                  type="number" 
+                  placeholder="Digite a quantidade de estoque máximo aqui..." 
+                  value={stock_Max} 
+                  onChange={(e) => setStock_Max(e.target.value)} 
                 />
 
                 <h3>Preço</h3>
@@ -136,55 +205,43 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
                   value={price} 
                   onChange={(e) => setPrice(e.target.value)} 
                 />
-
-                <h3>Quantidade</h3>
-                <input 
-                  className="crud-modal-input" 
-                  type="number" 
-                  placeholder="Digite a quantidade aqui..." 
-                  value={quantity} 
-                  onChange={(e) => setQuantity(e.target.value)} 
-                />
               </>
             }
             {
               mode === 'promotion' &&
               <>
-                <h3>Nome</h3>
-                <input 
-                  className="crud-modal-input" 
-                  type="text" 
-                  placeholder="Digite o nome aqui..." 
-                  value={name} 
-                  onChange={(e) => setName(e.target.value)} 
-                />
 
-                <h3>Desconto</h3>
+                <h3>ID do Produto</h3>
                 <input 
                   className="crud-modal-input" 
                   type="number" 
-                  placeholder="Digite o desconto aqui..." 
-                  value={discount} 
-                  onChange={(e) => setDiscount(e.target.value)} 
+                  placeholder="Digite o ID do Produto que irá receber a promoção aqui..." 
+                  value={productID} 
+                  onChange={(e) => setProductID(e.target.value)} 
                 />
 
-                <h3>Data de início</h3>
+                <h3>Nível</h3>
+                <select 
+                  className="crud-modal-select" 
+                  name="level" id="level" 
+                  value={level} 
+                  onChange={(e) => setLevel(e.target.value)}
+                >
+                  <option value="">Selecione um nível</option>
+                  <option value={1}>Ouro</option>
+                  <option value={2}>Prata</option>
+                  <option value={3}>Bronze</option>
+                </select>
+
+                <h3>Porcentagem Promocional</h3>
                 <input 
                   className="crud-modal-input" 
-                  type="date" 
-                  placeholder="Digite a data de início aqui..." 
-                  value={start_date} 
-                  onChange={(e) => setStart_date(e.target.value)} 
+                  type="number" 
+                  placeholder="Digite a porcentagem promocional aqui..." 
+                  value={promotionalPercent} 
+                  onChange={(e) => setPromotionalPercent(e.target.value)} 
                 />
 
-                <h3>Data de término</h3>
-                <input 
-                  className="crud-modal-input" 
-                  type="date" 
-                  placeholder="Digite a data de término aqui..." 
-                  value={end_date} 
-                  onChange={(e) => setEnd_date(e.target.value)} 
-                />
               </>
             }
           </div>
@@ -198,9 +255,9 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
                   if (mode === 'client') {
                     handleAddClient(name, region, level, cnpj, email, phone_number);
                   } else if (mode === 'product') {
-                    handleAddProduct(name, description, price, quantity);
+                    handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
                   } else if (mode === 'promotion') {
-                    handleAddPromotion(name, discount, start_date, end_date);
+                    handleAddPromotion(productID, level, promotionalPercent);
                   }
                   setOpenAddModal(false);
                 }}
@@ -213,9 +270,9 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, mod
                   if (mode === 'client') {
                     handleAddClient(name, region, level, cnpj, email, phone_number);
                   } else if (mode === 'product') {
-                    handleAddProduct(name, description, price, quantity);
+                    handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
                   } else if (mode === 'promotion') {
-                    handleAddPromotion(name, discount, start_date,end_date);
+                    handleAddPromotion(productID, level, promotionalPercent);
                   }
                   setOpenAddModal(false);
                 }}
