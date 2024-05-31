@@ -43,7 +43,7 @@ function Promocao() {
       <DeleteModal
       isOpen={openDeleteModal}
       setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
-      handleDelete={handleDeletePromotion}
+      handleDeletePromotion={handleDeletePromotion}
       mode={'promotion'}
       clientOrPromotionOrProduct={{ promotion: selectedPromotion }}
      />

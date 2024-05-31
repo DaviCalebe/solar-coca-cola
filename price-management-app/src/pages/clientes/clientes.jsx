@@ -136,9 +136,9 @@ function Clientes(){
         <DeleteModal
         isOpen={openDeleteModal}
         setOpenDeleteModal={(value) => setOpenAddModal(false)}
-        handleDelete={handleDeleteClient}
+        handleDeleteClient={handleDeleteClient}
         mode={'client'}
-        clientOrPromotionOrProduct={selectedClient}
+        clientOrPromotionOrProduct={{ client: selectedClient}}
         />
 
         <div className="table-box box-clientes">
