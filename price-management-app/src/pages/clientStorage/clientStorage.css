@@ -7,6 +7,10 @@
     gap: 10px;
 }
 
+.division h1{
+    padding-left: 15px;
+}
+
 .client-profile{
     background-color: #d9d9d9;
     display: flex;
@@ -26,4 +30,13 @@
     background-color: snow;
     width: 100%;
     height: 100%;
+}
+
+.division .crud-btn{
+    width: 98%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
 }

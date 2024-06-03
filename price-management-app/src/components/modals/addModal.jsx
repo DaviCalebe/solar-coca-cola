@@ -15,6 +15,8 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
   const [price, setPrice] = useState('');
   const [productID, setProductID] = useState('');
   const [promotionalPercent, setPromotionalPercent] = useState('');
+  const [product, setProduct] = useState('');
+  const [quantity, setQuantity] = useState('');
   
   const [liberar, setLiberar] = useState(false);
 
@@ -26,6 +28,8 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
     dependencies = [name, region, level, category, quantity_ml, stock_quantity, stock_Max, price];
   } else if (mode === 'promotion') {
     dependencies = [productID, level, promotionalPercent];
+  } else if (mode === 'clientStorage') {
+    dependencies = [product, quantity];
   }
   
   useEffect(function(){
@@ -245,41 +249,66 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                 />
 
               </>
-            }
+            } 
+            {
+              mode === 'clientStorage' &&
+              <>
+                <h3>Produto</h3>
+                <input 
+                  className="crud-modal-input" 
+                  type="text" 
+                  placeholder="Digite o produto aqui..." 
+                  value={product} 
+                  onChange={(e) => setProduct(e.target.value)} 
+                />
+
+                <h3>Quantidade</h3>
+                <input 
+                  className="crud-modal-input" 
+                  type="number" 
+                  placeholder="Digite a quantidade aqui..." 
+                  value={quantity} 
+                  onChange={(e) => setQuantity(e.target.value)} 
+                />
+              </>
+          }
           </div>
           <div className="modal-buttons">
             <button className="modal-button cancel" onClick={() => setOpenAddModal(false)}>CANCELAR</button>
             {
-              liberar?
+              liberar ?
                 <button
-                className="modal-button submit" 
-                onClick={() => {
-                  if (mode === 'client') {
-                    handleAddClient(name, region, level, cnpj, email, phone_number);
-                  } else if (mode === 'product') {
-                    handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
-                  } else if (mode === 'promotion') {
-                    handleAddPromotion(productID, level, promotionalPercent);
-                  }
-                  setOpenAddModal(false);
-                }}
-              >ADICIONAR</button>
-              :
+                  className="modal-button submit" 
+                  onClick={() => {
+                    if (mode === 'client') {
+                      handleAddClient(name, region, level, cnpj, email, phone_number);
+                    } else if (mode === 'product') {
+                      handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
+                    } else if (mode === 'promotion') {
+                      handleAddPromotion(productID, level, promotionalPercent);
+                    } else if (mode === 'clientStorage') {
+                      handleAddClientStorage(product, quantity);
+                    }
+                    setOpenAddModal(false);
+                  }}
+                >ADICIONAR</button>
+                :
                 <button
-                disabled
-                className="modal-button submit" 
-                onClick={() => {
-                  if (mode === 'client') {
-                    handleAddClient(name, region, level, cnpj, email, phone_number);
-                  } else if (mode === 'product') {
-                    handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
-                  } else if (mode === 'promotion') {
-                    console.log(productID, level, promotionalPercent)
-                    handleAddPromotion(productID, level, promotionalPercent);
-                  }
-                  setOpenAddModal(false);
-                }}
-              >ADICIONAR</button>
+                  disabled
+                  className="modal-button submit" 
+                  onClick={() => {
+                    if (mode === 'client') {
+                      handleAddClient(name, region, level, cnpj, email, phone_number);
+                    } else if (mode === 'product') {
+                      handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
+                    } else if (mode === 'promotion') {
+                      handleAddPromotion(productID, level, promotionalPercent);
+                    } else if (mode === 'clientStorage') {
+                      handleAddClientStorage(product, quantity);
+                    }
+                    setOpenAddModal(false);
+                  }}
+                >ADICIONAR</button>
             }
           </div>
         </div>

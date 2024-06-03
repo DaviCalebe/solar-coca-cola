@@ -4,8 +4,7 @@ import Clientes from "./pages/clientes/clientes.jsx";
 import Produtos from "./pages/produtos/produtos.jsx";
 import Promocao from "./pages/promocao/promocao.jsx";
 import Relatorios from "./pages/relatorio/relatorios.jsx";
-import ClientInfo from "./pages/client-info/client-info.jsx";
-
+import ClientStorage from "./pages/clientStorage/clientStorage.jsx";
 
 function Rotas() {
   return <BrowserRouter>
@@ -15,7 +14,7 @@ function Rotas() {
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/promocao" element ={<Promocao />} />
             <Route path="/relatorios" element ={<Relatorios />} />
-            <Route path="/client-info" element ={<ClientInfo />} />
+            <Route path="/clientStorage/:clientId" element ={<ClientStorage />} />
             
         </Routes>
     </BrowserRouter>

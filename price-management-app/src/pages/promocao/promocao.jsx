@@ -49,8 +49,7 @@ function Promocao() {
         setOpenAddModal={(value) => setOpenAddModal(false)}
         handleAddPromotion={handleAddPromotion}
         mode={'promotion'}
-        />
-
+      />
 
       <DeleteModal
       isOpen={openDeleteModal}
@@ -64,7 +63,7 @@ function Promocao() {
         <table>
           <thead>
             <tr>
-              <th>ID do Produto</th>
+              <th>ID da Promoção</th>
               <th>Nome do Produto</th>
               <th>Quantidade ML</th>
               <th>Preço Original</th>
@@ -85,9 +84,8 @@ function Promocao() {
                                       {style: 'currency', currency: "BRL"}).format(promo.promotionalPrice)}</td>
                 <td>{promo.level.name}</td>
                 <td>
-                  <div className="box-btn">
-                    <button className="editar-btn crud-btn">Promoção especial</button>
-                    <button className="remover-btn crud-btn" onClick={() => {setSelectedPromotion(promo); setOpenDeleteModal(true)}}>Resetar promoção</button>
+                  <div className="promo-box-btn">
+                    <button className="remover-btn crud-btn delete-promo" onClick={() => {setSelectedPromotion(promo); setOpenDeleteModal(true)}}>Excluir promoção</button>
                   </div>
                 </td>
               </tr>

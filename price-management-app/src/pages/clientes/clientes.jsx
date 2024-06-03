@@ -7,6 +7,7 @@ import AddModal from "../../components/modals/addModal.jsx";
 import UpdateModal from "../../components/modals/updateModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Clientes(){
 
@@ -133,6 +134,7 @@ function Clientes(){
           handleUpdateClient={handleUpdateClient}
           selectedClient={selectedClient}
           setSelectedClient={setSelectedClient}
+          mode={'client'}
         />
         
         <DeleteModal
@@ -183,6 +185,14 @@ function Clientes(){
                                   }}
                                 >
                                   Excluir
+                                </button>
+
+                                <button className="crud-btn" onClick={() => (
+                                  <Link to={`/clientStorage/${selectedClient}`}>
+                                    Seus Produtos
+                                  </Link>
+                                )}>
+                                  Seus Produtos
                                 </button>
                             </div>
                         </td>

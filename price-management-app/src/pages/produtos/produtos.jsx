@@ -4,6 +4,7 @@ import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import api from "../../services/products-services.js"
 import AddModal from "../../components/modals/addModal.jsx";
+import UpdateModal from "../../components/modals/updateModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
 
@@ -70,8 +71,6 @@ function Produtos(){
       const filteredRepos = products.filter(
         (repo) =>
           repo.name.toLowerCase().includes(search.toLowerCase()) &&
-          (selectedRegion === "" || repo.region.name === selectedRegion) &&
-          (selectedLevel === "" || repo.level.name === selectedLevel) &&
           (selectedCategory === "" || repo.category === selectedCategory)
       );
 
@@ -91,39 +90,14 @@ function Produtos(){
 
             </div>
 
-            <select
-            name="nivel"
-            id="nivel"
-            className="clientes-select"
-            onChange={(e) => setSelectedLevel(e.target.value)}
-            >
-                <option value="">Todos os níveis</option>
-                <option value="Ouro">Ouro</option>
-                <option value="Prata">Prata</option>
-                <option value="Bronze">Bronze</option>
-            </select>
-
-            <select
-            name="regiao"
-            id="regiao"
-            className="clientes-select"
-            onChange={(e) => setSelectedRegion(e.target.value)}
-            >
-                <option value="">Todas as regiões</option>
-                <option value="Norte">Norte</option>
-                <option value="Nordeste">Nordeste</option>
-                <option value="Centro-Oeste">Centro-Oeste</option>
-                <option value="Sudeste">Sudeste</option>
-                <option value="Sul">Sul</option>
-            </select>
-
             <select name="categoria"
             id="categoria"
             className="produtos-select"
             onChange={(e) => setSelectedCategory(e.target.value)}
             >
-                <option value="Refrigerantes">Refrigerantes</option>
-                <option value="Águas">Águas</option>
+                <option value="">Todas as Categorias</option>
+                <option value="Garrafa">Garrafa</option>
+                <option value="Lata">Lata</option>
             </select>
 
             <button className="add-btn crud-btn" onClick={() => setOpenAddModal(true)}>
@@ -136,6 +110,15 @@ function Produtos(){
         setOpenAddModal={(value) => setOpenAddModal(false)}
         handleAddProduct={handleAddProduct}
         mode={'product'}
+        />
+
+        <UpdateModal
+          isOpen={openUpdateModal}
+          setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
+          handleUpdateProduct={handleUpdateProduct}
+          selectedProduct={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+          mode={'product'}
         />
 
         <DeleteModal
@@ -170,16 +153,20 @@ function Produtos(){
                                 <td>{prod.category}</td>
                                 <td>
                                     <div className="box-btn">
-                                        <button className="editar-btn crud-btn">
-                                            Editar
-                                        </button>
+                                    <button
+                                        className="editar-btn crud-btn"
+                                        onClick={() => {handleUpdateProduct(prod);
+                                        setOpenUpdateModal(true)}}
+                                        >
+                                         Editar
+                                    </button>
                                         <button className="remover-btn crud-btn"
                                         onClick={() => {
                                             setSelectedProduct(prod);
                                             setOpenDeleteModal(true);
                                           }}>
-                                            Remover
-                                        </button> 
+                                            Excluir
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
