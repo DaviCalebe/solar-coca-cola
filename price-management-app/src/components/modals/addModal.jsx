@@ -274,6 +274,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                   } else if (mode === 'product') {
                     handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
                   } else if (mode === 'promotion') {
+                    console.log(productID, level, promotionalPercent)
                     handleAddPromotion(productID, level, promotionalPercent);
                   }
                   setOpenAddModal(false);

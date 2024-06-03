@@ -38,32 +38,6 @@ function Promocao() {
             />
         </div>
 
-        <select
-            name="nivel"
-            id="nivel"
-            className="clientes-select"
-            onChange={(e) => setSelectedLevel(e.target.value)}
-            >
-                <option value="">Todos os níveis</option>
-                <option value="Ouro">Ouro</option>
-                <option value="Prata">Prata</option>
-                <option value="Bronze">Bronze</option>
-            </select>
-
-            <select
-            name="regiao"
-            id="regiao"
-            className="clientes-select"
-            onChange={(e) => setSelectedRegion(e.target.value)}
-            >
-                <option value="">Todas as regiões</option>
-                <option value="Norte">Norte</option>
-                <option value="Nordeste">Nordeste</option>
-                <option value="Centro-Oeste">Centro-Oeste</option>
-                <option value="Sudeste">Sudeste</option>
-                <option value="Sul">Sul</option>
-            </select>
-
       <button className="add-btn crud-btn" onClick={() => setOpenAddModal(true)}>
                 + Adicionar novo
             </button>
@@ -95,6 +69,7 @@ function Promocao() {
               <th>Quantidade ML</th>
               <th>Preço Original</th>
               <th>Preço Promocional</th>
+              <th>Nível</th>
               <th>Opções</th>
             </tr>
           </thead>
@@ -108,10 +83,11 @@ function Promocao() {
                                       {style: 'currency', currency: "BRL"}).format(promo.product.price)}</td>
                 <td>{new Intl.NumberFormat('pt-BR',
                                       {style: 'currency', currency: "BRL"}).format(promo.promotionalPrice)}</td>
+                <td>{promo.level.name}</td>
                 <td>
                   <div className="box-btn">
                     <button className="editar-btn crud-btn">Promoção especial</button>
-                    <button className="remover-btn crud-btn" onClick={() => {setSelectedPromotion(promo.id); setOpenDeleteModal(true)}}>Resetar promoção</button>
+                    <button className="remover-btn crud-btn" onClick={() => {setSelectedPromotion(promo); setOpenDeleteModal(true)}}>Resetar promoção</button>
                   </div>
                 </td>
               </tr>

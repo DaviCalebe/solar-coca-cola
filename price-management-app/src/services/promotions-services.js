@@ -10,11 +10,11 @@ export const fetchPromotions = async () => {
     }
   };
 
-  export const handleAddPromotion = async (promotionalPercent) => {
+  export const handleAddPromotion = async (product, level, promotionalPercent, setPromotions) => {
     try {
       const response = await api.post('/promotions/add', {
-        product: { id: 1},
-        level: { id: 1},
+        product: { id: product },
+        level: { id: level },
         promotionalPercent
       });
       setPromotions([...promotions, response.data]);

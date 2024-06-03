@@ -53,6 +53,7 @@ function Clientes(){
         console.log(response.data);
       } catch (error) {
         console.error(`Erro ao atualizar cliente: ${error.message}`);
+        console.error(error.response.data);
       }
     };
 

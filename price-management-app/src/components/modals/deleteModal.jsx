@@ -1,6 +1,6 @@
 import "./deleteModal.css";
 
-export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteClient, mode, clientOrPromotionOrProduct }) {
+export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteClient, handleDeleteProduct, handleDeletePromotion, mode, clientOrPromotionOrProduct }) {
   if (isOpen) {
     return (
       <div className="modal">

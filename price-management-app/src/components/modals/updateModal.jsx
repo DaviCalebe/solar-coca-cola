@@ -129,6 +129,7 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateCl
             className="modal-button submit" 
             onClick={() => {
               handleSubmit();
+              console.log(updatedClient);
               setOpenUpdateModal(false);
             }}
           >ATUALIZAR</button>
