@@ -2,6 +2,7 @@ import "./promocao.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
+import AddModal from "../../components/modals/addModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
 import { fetchPromotions, handleAddPromotion, handleDeletePromotion } from "../../services/promotions-services.js";
@@ -68,6 +69,13 @@ function Promocao() {
             </button>
             
       </div>
+
+      <AddModal
+        isOpen={openAddModal}
+        setOpenAddModal={(value) => setOpenAddModal(false)}
+        handleAddPromotion={handleAddPromotion}
+        mode={'promotion'}
+        />
 
 
       <DeleteModal
