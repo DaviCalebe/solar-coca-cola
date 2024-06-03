@@ -48,7 +48,7 @@ public class Client {
     @JoinColumn(name = "level_id")
     private Level level;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<ClientProduct> clienteProdutos;
     
