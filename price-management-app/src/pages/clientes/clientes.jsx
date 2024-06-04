@@ -187,13 +187,13 @@ function Clientes(){
                                   Excluir
                                 </button>
 
-                                <button className="crud-btn" onClick={() => (
-                                  <Link to={`/clientStorage/${selectedClient}`}>
-                                    Seus Produtos
-                                  </Link>
-                                )}>
-                                  Seus Produtos
+                                <button className="redirect-btn crud-btn" onClick={() => {
+                                  setSelectedClient(cl);
+                                  window.location.href = `/clientStorage/${selectedClient.id}`;
+                                }}>
+                                  Produtos
                                 </button>
+
                             </div>
                         </td>
                     </tr>

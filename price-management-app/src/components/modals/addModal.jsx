@@ -172,8 +172,8 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   <option value="">Selecione uma categoria</option>
-                  <option value={"Refrigerantes"}>Refrigerantes</option>
-                  <option value={"Águas"}>Águas</option>
+                  <option value={"Garrafa"}>Garrafa</option>
+                  <option value={"Lata"}>Lata</option>
                 </select>
 
                 <h3>Quantidade em ML</h3>

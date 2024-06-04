@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import AddModal from "../../components/modals/addModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
+import api from "../../services/api.js";
 import { useState, useEffect } from "react";
 import { fetchClientStorage, handleAddClientProduct, handleDeleteClientProduct } from "../../services/clients-services.js";
 import { useParams } from "react-router-dom";
@@ -18,20 +19,29 @@ export default function ClientStorage(){
     const [clientName, setClientName] = useState(null);
 
     useEffect(() => {
+
+        const fetchClient = async () => {
+            const response = await api.get(`/clients/${clientId}`)
+            setSelectedClient(response.data.client)
+            console.log
+          }
+
         if (selectedClient) {
           fetchClientStorage(selectedClient).then((response) => {
             setClientName(response.data.clientName);
           });
         }
+
+        if (selectedClient) {
+            fetchClientStorage(selectedClient).then((data) => {
+              setClientStorage(data);
+            });
+          }
+
+          fetchClient();
+
       }, [selectedClient]);
 
-    useEffect(() => {
-        if (selectedClient) {
-          fetchClientStorage(selectedClient).then((data) => {
-            setClientStorage(data);
-          });
-        }
-      }, [selectedClient]);
 
     return <main>
         <Sidebar/>
@@ -40,7 +50,7 @@ export default function ClientStorage(){
 
             <h1>{clientName || ""}</h1>
 
-            <button className="add-btn crud-btn">
+            <button className="add-btn crud-btn" onClick={ () => console.log(selectedClient)}>
                 + Adicionar produto
             </button>
 

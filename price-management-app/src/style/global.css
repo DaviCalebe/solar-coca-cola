@@ -72,7 +72,7 @@ input:focus {
     padding: 3px;
 }
 
-.editar-btn, .remover-btn{
+.editar-btn, .remover-btn, .redirect-btn{
     width: 40%;
     height: 80%;
     padding: 5px;

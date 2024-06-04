@@ -10,7 +10,7 @@ export default axios.create({
  */
 export const fetchClientStorage = async (client) => {
     try {
-      const response = await api.get(`/${client}/produtos`);
+      const response = await api.get(`/clients/${client}/produtos`);
       return response.data;
     } catch (error) {
       console.error(error);
