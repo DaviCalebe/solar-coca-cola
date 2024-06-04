@@ -42,7 +42,6 @@ export default function ClientStorage(){
 
       }, [selectedClient]);
 
-
     return <main>
         <Sidebar/>
         <Upbar/>
