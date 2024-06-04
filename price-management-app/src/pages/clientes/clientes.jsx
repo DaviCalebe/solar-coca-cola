@@ -139,7 +139,7 @@ function Clientes(){
         
         <DeleteModal
           isOpen={openDeleteModal}
-          setOpenDeleteModal={(value) => setOpenAddModal(false)}
+          setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
           handleDeleteClient={handleDeleteClient}
           mode={'client'}
           clientOrPromotionOrProduct={{ client: selectedClient}}

@@ -123,7 +123,7 @@ function Produtos(){
 
         <DeleteModal
         isOpen={openDeleteModal}
-        setOpenDeleteModal={(value) => setOpenAddModal(false)}
+        setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
         handleDeleteProduct={handleDeleteProduct}
         mode={'product'}
         clientOrPromotionOrProduct={{ product: selectedProduct}}
