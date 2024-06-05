@@ -1,14 +1,14 @@
 # PROJETO SolarCocaCola
 
-Este projeto é um projeto feito em SpringBoot e React que inclui funcionalidades de CRUD para clientes, CRUD Para Produtos , CRUD Para Promoções e relacionamento das entidades Clientes e Produtos.
+Este projeto é um projeto feito em SpringBoot e React que inclui funcionalidades como CRUD para Clientes, Produtos e Promoções, e também o relacionamento das entidades Clientes e Produtos.
 
 ## Funcionalidades
 
-Adicionar, atualizar, deletar, listar clientes , adicionar produtos , visuazliar produtos e remover produdos de  clientes.
-Adicionar, atualizar, deletar, listar clientes de  Produtos.
-Adicionar, atualizar, deletar, listar clientes de  Promoções.
+Adicionar, atualizar, deletar, listar Clientes, Produtos, Promoções, e também adicionar, deletar e listar os Produtos de cada cliente específico.
 
 ## Requisitos
+
+Node.JS
 
 Java 17 ou superior
 
@@ -17,6 +17,24 @@ Maven
 MySQL
 
 Para executar a aplicação no Visual Studio Code, você precisa instalar a extensão "Debugger for Java"
+
+## Ligar o Servidor
+
+<p>Para utilizar a aplicação, o usuário precisará baixar algumas dependências que não estão incluídas no arquivo do projeto. É possível baixá-las localmente apenas quando necessário, devido ao seu tamanho considerável. Você pode instalá-las rapidamente utilizando os seguintes comandos no terminal do VS Code:</p>
+
+```
+cd price-management-app
+```
+```
+npm install
+```
+
+<p>Agora que você já baixou as dependências no arquivo, para retornar ao diretório inicial, basta executar o seguinte comando no terminal:</p>
+
+```
+npm run dev
+```
+<p>Pronto, o servidor local já está ativo. Para acessá-lo, basta clicar no link exibido no terminal.</p>
 
 ## Configuração do Banco de Dados
 Obs : O banco está hospedado temporariamente , se a hospegagem terminar ou se optar usar seu propio banco de dados , utilize esses passo a passo :
