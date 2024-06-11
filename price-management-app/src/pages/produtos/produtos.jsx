@@ -5,7 +5,8 @@ import lupa from "../../assets/lupa.svg";
 import AddModal from "../../components/modals/addModal.jsx";
 import UpdateModal from "../../components/modals/updateModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
-import { fetchProducts, handleAddProduct, handleDeleteProduct } from "../../services/products-services.js"
+import Alert from "../../components/alert/alert.jsx";
+import { fetchProducts, handleAddProduct, handleUpdateProduct, handleDeleteProduct } from "../../services/products-services.js"
 import { useState, useEffect } from "react";
 
 function Produtos(){
@@ -17,22 +18,13 @@ function Produtos(){
     const [openAddModal, setOpenAddModal] = useState(false);
     const [openUpdateModal, setOpenUpdateModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [alert, setAlert] = useState({ message: '', type: '' });
 
     useEffect(() => {
     fetchProducts().then((products) => {
         setProducts(products);
     });
     }, []);
-
-    const handleUpdateProduct = async (product) => {
-        try{
-            const response = await api.put(`/products/update/${product.id}`, product);
-            setSelectedProduct(product);
-            console.log(response.data);
-        } catch (error) {
-            console.error(`Erro ao atualizar promoção: ${error.message}`);
-        }
-    };
 
     const filteredRepos = products.filter(
     (repo) =>
@@ -74,14 +66,14 @@ function Produtos(){
         <AddModal
           isOpen={openAddModal}
           setOpenAddModal={(value) => setOpenAddModal(false)}
-          handleAddProduct={(name, category, quantity_ml, stock_quantity, stock_Max, price) => handleAddProduct(name, category, quantity_ml, stock_quantity, stock_Max, price, products, setProducts)}
+          handleAddProduct={(name, category, quantity_ml, stock_quantity, stock_Max, price) => handleAddProduct(name, category, quantity_ml, stock_quantity, stock_Max, price, products, setProducts, setAlert)}
           mode={'product'}
         />
 
         <UpdateModal
           isOpen={openUpdateModal}
           setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
-          handleUpdateProduct={handleUpdateProduct}
+          handleUpdateProduct={(product => handleUpdateProduct(product, setSelectedProduct))}
           selectedProduct={selectedProduct}
           setSelectedProduct={setSelectedProduct}
           mode={'product'}
@@ -90,10 +82,12 @@ function Produtos(){
         <DeleteModal
           isOpen={openDeleteModal}
           setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
-          handleDeleteProduct={handleDeleteProduct}
+          handleDeleteProduct={(id) => handleDeleteProduct(id, setAlert)}
           mode={'product'}
           clientOrPromotionOrProduct={{ product: selectedProduct}}
         />
+
+        <Alert type={alert.type} message={alert.message} />
         
         <div className="table-box box-produtos">
             <table>
@@ -121,7 +115,7 @@ function Produtos(){
                                     <div className="box-btn">
                                     <button
                                         className="editar-btn crud-btn"
-                                        onClick={() => {handleUpdateProduct(prod);
+                                        onClick={() => {handleUpdateProduct(prod, setSelectedProduct);
                                         setOpenUpdateModal(true)}}
                                         >
                                          Editar

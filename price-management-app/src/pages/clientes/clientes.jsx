@@ -6,9 +6,8 @@ import AddModal from "../../components/modals/addModal.jsx";
 import UpdateModal from "../../components/modals/updateModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
 import Alert from "../../components/alert/alert.jsx";
-import api from "../../services/api.js";
 import { useState, useEffect } from "react";
-import { fetchClients, handleAddClient, handleDeleteClient } from "../../services/clients-services.js"
+import { fetchClients, handleAddClient, handleUpdateClient, handleDeleteClient } from "../../services/clients-services.js"
 
 function Clientes(){
 
@@ -27,17 +26,6 @@ function Clientes(){
         setClients(clients);
       });
     }, []);
-
-    const handleUpdateClient = async (client) => {
-      try {
-        const response = await api.put(`/clients/update/${client.id}`, client);
-        setSelectedClient(client);
-        console.log(response.data);
-      } catch (error) {
-        console.error(`Erro ao atualizar cliente: ${error.message}`);
-        console.error(error.response.data);
-      }
-      };
     
     const filteredRepos = clients.filter(
       (repo) =>
@@ -105,7 +93,7 @@ function Clientes(){
         <UpdateModal
           isOpen={openUpdateModal}
           setOpenUpdateModal={(value) => setOpenUpdateModal(false)}
-          handleUpdateClient={handleUpdateClient}
+          handleUpdateClient={(client) => handleUpdateClient(client, setSelectedClient)}
           selectedClient={selectedClient}
           setSelectedClient={setSelectedClient}
           mode={'client'}
@@ -145,13 +133,13 @@ function Clientes(){
                         <td>{cl.phone_number}</td>
                         <td>
                             <div className="box-btn">
-                                <button
-                                  className="editar-btn crud-btn"
-                                  onClick={() => {handleUpdateClient(cl);
-                                  setOpenUpdateModal(true)}}
-                                >
-                                  Editar
-                                </button>
+                              <button
+                                className="editar-btn crud-btn"
+                                onClick={() => {handleUpdateClient(cl, setSelectedClient);
+                                setOpenUpdateModal(true)}}
+                              >
+                                Editar
+                              </button>
                                 
                                 <button
                                   className="remover-btn crud-btn"
