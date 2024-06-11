@@ -1,7 +1,6 @@
 import "./botoes-acessos.css";
 import clientes from "../../assets/clientes-white.svg"
 import produtos from "../../assets/produtos-white.svg"
-import precos from "../../assets/precos-white.svg"
 import promocao from "../../assets/promocao-white.svg"
 import relatorios from "../../assets/relatorios-white.svg"
 import { Link } from "react-router-dom";
@@ -18,7 +17,7 @@ function Botoes_acessos(){
                     </div>
                     <div className="acessos-letreiro">
                         <p>ACESSAR</p>
-                        <h2>Clientes</h2>
+                        <h1>Clientes</h1>
                     </div>
                 </div>
             </Link>
@@ -30,7 +29,7 @@ function Botoes_acessos(){
                     </div>
                     <div className="acessos-letreiro">
                         <p>ACESSAR</p>
-                        <h2>Produtos</h2>
+                        <h1>Produtos</h1>
                     </div>
                 </div>
             </Link>
@@ -42,7 +41,7 @@ function Botoes_acessos(){
                     </div>
                     <div className="acessos-letreiro">
                         <p>ACESSAR</p>
-                        <h2>Promoção</h2>
+                        <h1>Promoções</h1>
                     </div>
                 </div>
             </Link>
@@ -54,7 +53,7 @@ function Botoes_acessos(){
                     </div>
                     <div className="acessos-letreiro">
                         <p>ACESSAR</p>
-                        <h2>Relatórios</h2>
+                        <h1>Relatórios</h1>
                     </div>
                 </div>
             </Link>
