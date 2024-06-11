@@ -4,9 +4,9 @@ import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
 import AddModal from "../../components/modals/addModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
+import Alert from "../../components/alert/alert.jsx";
 import { useState, useEffect } from "react";
 import { fetchPromotions, handleAddPromotion, handleDeletePromotion } from "../../services/promotions-services.js";
-import Alert from "../../components/alert/alert.jsx";
 
 function Promocao() {
 

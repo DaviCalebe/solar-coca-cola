@@ -2,77 +2,43 @@ import "./produtos.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
-import api from "../../services/products-services.js"
 import AddModal from "../../components/modals/addModal.jsx";
 import UpdateModal from "../../components/modals/updateModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
+import { fetchProducts, handleAddProduct, handleDeleteProduct } from "../../services/products-services.js"
 import { useState, useEffect } from "react";
-
 
 function Produtos(){
 
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState (null);
     const [search, setSearch] = useState("");
-    const [selectedRegion, setSelectedRegion] = useState("");
-    const [selectedLevel, setSelectedLevel] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [openAddModal, setOpenAddModal] = useState(false);
     const [openUpdateModal, setOpenUpdateModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-    const fetchProducts = async () => {
-        const response = await api.get('/products');
-        return response.data;
-      };
+    useEffect(() => {
+    fetchProducts().then((products) => {
+        setProducts(products);
+    });
+    }, []);
 
-      useEffect(() => {
-        fetchProducts().then((products) => {
-          setProducts(products);
-        });
-      }, []);
-
-      const handleAddProduct = async (name, region, level, category, quantity_ml, stock_quantity, stock_Max, price) => {
+    const handleUpdateProduct = async (product) => {
         try{
-         const response = await api.post('/products/add', {
-             name,
-             region: {id:region },
-             level: {id: level }, 
-             category,
-             quantity_ml,
-             stock_quantity,
-             stock_Max,
-             price
-         });
-         setProducts([...products, response.data])
-     }   catch (error){
-         console.error(error);
-     }
-    }
-        const handleUpdateProduct = async (product) => {
-            try{
-                const response = await api.put(`/products/update/${product.id}`, product);
-                setSelectedProduct(product);
-                console.log(response.data);
-            } catch (error) {
-                console.error(`Erro ao atualizar promoção: ${error.message}`);
-            }
-        };
+            const response = await api.put(`/products/update/${product.id}`, product);
+            setSelectedProduct(product);
+            console.log(response.data);
+        } catch (error) {
+            console.error(`Erro ao atualizar promoção: ${error.message}`);
+        }
+    };
 
-        const handleDeleteProduct = async (id) => {
-            try{
-                await api.delete(`/products/delete/${id}`);
-                console.log(`Produto ${id} excluído com sucesso`);
-            } catch (error) {
-                console.log(`Erro ao deletar o produto ${id}`);
-            }
-        };
-
-      const filteredRepos = products.filter(
-        (repo) =>
-          repo.name.toLowerCase().includes(search.toLowerCase()) &&
-          (selectedCategory === "" || repo.category === selectedCategory)
-      );
+    const filteredRepos = products.filter(
+    (repo) =>
+        repo.name.toLowerCase().includes(search.toLowerCase()) &&
+        (selectedCategory === "" || repo.category === selectedCategory)
+    );
 
     return <main>
         <Sidebar />
@@ -106,10 +72,10 @@ function Produtos(){
         </div>
 
         <AddModal
-        isOpen={openAddModal}
-        setOpenAddModal={(value) => setOpenAddModal(false)}
-        handleAddProduct={handleAddProduct}
-        mode={'product'}
+          isOpen={openAddModal}
+          setOpenAddModal={(value) => setOpenAddModal(false)}
+          handleAddProduct={(name, category, quantity_ml, stock_quantity, stock_Max, price) => handleAddProduct(name, category, quantity_ml, stock_quantity, stock_Max, price, products, setProducts)}
+          mode={'product'}
         />
 
         <UpdateModal
@@ -122,11 +88,11 @@ function Produtos(){
         />
 
         <DeleteModal
-        isOpen={openDeleteModal}
-        setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
-        handleDeleteProduct={handleDeleteProduct}
-        mode={'product'}
-        clientOrPromotionOrProduct={{ product: selectedProduct}}
+          isOpen={openDeleteModal}
+          setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
+          handleDeleteProduct={handleDeleteProduct}
+          mode={'product'}
+          clientOrPromotionOrProduct={{ product: selectedProduct}}
         />
         
         <div className="table-box box-produtos">

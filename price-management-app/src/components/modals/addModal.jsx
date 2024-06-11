@@ -25,7 +25,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
   if (mode === 'client') {
     dependencies = [name, region, level, cnpj, email, phone_number];
   } else if (mode === 'product') {
-    dependencies = [name, region, level, category, quantity_ml, stock_quantity, stock_Max, price];
+    dependencies = [name, category, quantity_ml, stock_quantity, stock_Max, price];
   } else if (mode === 'promotion') {
     dependencies = [productID, level, promotionalPercent];
   } else if (mode === 'clientStorage') {
@@ -35,7 +35,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
   useEffect(function(){
     if (
       (mode === 'client' && name && region && level && cnpj && email && phone_number) ||
-      (mode === 'product' && name && region && level && category && quantity_ml && stock_quantity && stock_Max && price) ||
+      (mode === 'product' && name && category && quantity_ml && stock_quantity && stock_Max && price) ||
       (mode === 'promotion' && productID && level && promotionalPercent)
     ) {
       setLiberar(true)
@@ -134,35 +134,6 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                   value={name} 
                   onChange={(e) => setName(e.target.value)} 
                 />
-
-                <h3>Região</h3>
-                <select 
-                  className="crud-modal-select" 
-                  name="region" 
-                  id="region" 
-                  value={region} 
-                  onChange={(e) => setRegion(e.target.value)}
-                >
-                  <option value="">Selecione uma região</option>
-                  <option value={1}>Norte</option>
-                  <option value={2}>Nordeste</option>
-                  <option value={3}>Centro-Oeste</option>
-                  <option value={4}>Sudeste</option>
-                  <option value={5}>Sul</option>
-                </select>
-
-                <h3>Nível</h3>
-                <select 
-                  className="crud-modal-select" 
-                  name="level" id="level" 
-                  value={level} 
-                  onChange={(e) => setLevel(e.target.value)}
-                >
-                  <option value="">Selecione um nível</option>
-                  <option value={1}>Ouro</option>
-                  <option value={2}>Prata</option>
-                  <option value={3}>Bronze</option>
-                </select>
 
                 <h3>Categoria</h3>
                 <select 

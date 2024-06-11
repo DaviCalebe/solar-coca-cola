@@ -2,12 +2,13 @@ import "./clientes.css";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import Upbar from "../../components/upbar/upbar.jsx";
 import lupa from "../../assets/lupa.svg";
-import api from "../../services/clients-services.js"
 import AddModal from "../../components/modals/addModal.jsx";
 import UpdateModal from "../../components/modals/updateModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
+import Alert from "../../components/alert/alert.jsx";
+import api from "../../services/api.js";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { fetchClients, handleAddClient, handleDeleteClient } from "../../services/clients-services.js"
 
 function Clientes(){
 
@@ -19,33 +20,13 @@ function Clientes(){
     const [openUpdateModal, setOpenUpdateModal] = useState(false);
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [selectedClient, setSelectedClient] = useState(null);
+    const [alert, setAlert] = useState({ message: '', type: '' });
 
-    const fetchClients = async () => {
-        const response = await api.get('/clients');
-        return response.data;
-      };
-
-      useEffect(() => {
-        fetchClients().then((clients) => {
-          setClients(clients);
-        });
-      }, []);
-
-    const handleAddClient = async (name, region, level, cnpj, email, phone_number) => {
-        try {
-          const response = await api.post('/clients/add', {
-            name,
-            region: { id: region },
-            level: { id: level },
-            cnpj,
-            email,
-            phone_number
-          });
-          setClients([...clients, response.data]);
-        } catch (error) {
-          console.error(error);
-        }
-      };
+    useEffect(() => {
+      fetchClients().then((clients) => {
+        setClients(clients);
+      });
+    }, []);
 
     const handleUpdateClient = async (client) => {
       try {
@@ -56,16 +37,7 @@ function Clientes(){
         console.error(`Erro ao atualizar cliente: ${error.message}`);
         console.error(error.response.data);
       }
-    };
-
-    const handleDeleteClient = async (id) => {
-      try {
-        await api.delete(`/clients/delete/${id}`);
-        console.log(`Cliente ${id} excluído com sucesso`);
-      } catch (error) {
-        console.log(`Erro ao deletar o cliente ${id}`);
-      }
-    };
+      };
     
     const filteredRepos = clients.filter(
       (repo) =>
@@ -124,7 +96,9 @@ function Clientes(){
         <AddModal
           isOpen={openAddModal}
           setOpenAddModal={(value) => setOpenAddModal(false)}
-          handleAddClient={handleAddClient}
+          handleAddClient={(name, region, level, cnpj, email, phone_number) => 
+            handleAddClient(name, region, level, cnpj, email, phone_number, clients, setClients, setAlert)
+          }
           mode={'client'}
         />
 
@@ -140,10 +114,12 @@ function Clientes(){
         <DeleteModal
           isOpen={openDeleteModal}
           setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
-          handleDeleteClient={handleDeleteClient}
+          handleDeleteClient={(id) => handleDeleteClient(id, setAlert)}
           mode={'client'}
           clientOrPromotionOrProduct={{ client: selectedClient}}
         />
+
+        <Alert type={alert.type} message={alert.message} />
 
         <div className="table-box box-clientes">
             <table>
