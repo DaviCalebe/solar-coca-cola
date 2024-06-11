@@ -6,6 +6,7 @@ import AddModal from "../../components/modals/addModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
 import { useState, useEffect } from "react";
 import { fetchPromotions, handleAddPromotion, handleDeletePromotion } from "../../services/promotions-services.js";
+import Alert from "../../components/alert/alert.jsx";
 
 function Promocao() {
 
@@ -14,6 +15,7 @@ function Promocao() {
   const [search, setSearch] = useState("");
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [alert, setAlert] = useState({ message: '', type: '' });
   
   useEffect(() => {
     fetchPromotions().then((data) => {
@@ -47,17 +49,19 @@ function Promocao() {
       <AddModal
         isOpen={openAddModal}
         setOpenAddModal={(value) => setOpenAddModal(false)}
-        handleAddPromotion={handleAddPromotion}
+        handleAddPromotion={(product, level, promotionalPercent) => handleAddPromotion(product, level, promotionalPercent, promotions, setPromotions, setAlert)}
         mode={'promotion'}
       />
 
       <DeleteModal
-      isOpen={openDeleteModal}
-      setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
-      handleDeletePromotion={handleDeletePromotion}
-      mode={'promotion'}
-      clientOrPromotionOrProduct={{ promotion: selectedPromotion }}
-     />
+        isOpen={openDeleteModal}
+        setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
+        handleDeletePromotion={(id) => handleDeletePromotion(id, setAlert)}
+        mode={'promotion'}
+        clientOrPromotionOrProduct={{ promotion: selectedPromotion }}
+      />
+
+      <Alert type={alert.type} message={alert.message} />
 
       <div className="table-box box-promotions">
         <table>

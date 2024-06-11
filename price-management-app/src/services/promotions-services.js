@@ -10,7 +10,7 @@ export const fetchPromotions = async () => {
     }
   };
 
-  export const handleAddPromotion = async (product, level, promotionalPercent, setPromotions) => {
+  export const handleAddPromotion = async (product, level, promotionalPercent, promotions, setPromotions, setAlert) => {
     try {
       const response = await api.post('/promotions/add', {
         product: { id: product },
@@ -18,26 +18,20 @@ export const fetchPromotions = async () => {
         promotionalPercent
       });
       setPromotions([...promotions, response.data]);
+      setAlert({ message: 'Promoção adicionada com sucesso!', type: 'success' });
     } catch (error) {
       console.error(error);
+      setAlert({ message: 'Erro ao adicionar promoção!', type: 'error' });
     }
   };
 
-  export const handleUpdatePromotion = async (promotion) => {
-    try{
-      const response = await api.put(`/promotions/update/${promotion.id}`, promotion);
-      setSelectedPromotion (promotion);
-      console.log(response.data);
-    }catch (error) {
-      console.error(`Erro ao atualizar promoção: ${error.message}`);
-    }
-  };
-
-  export const handleDeletePromotion = async (id) => {
+  export const handleDeletePromotion = async (id, setAlert) => {
     try {
       await api.delete(`/promotions/delete/${id}`);
       console.log(`Promoção ${id} excluída com sucesso`);
+      setAlert({ message: 'Promoção excluída com sucesso!', type: 'success' });
     } catch (error) {
       console.log(`Erro ao deletar a promoção ${id}`);
+      setAlert({ message: 'Erro ao excluir promoção!', type: 'error' });
     }
   };

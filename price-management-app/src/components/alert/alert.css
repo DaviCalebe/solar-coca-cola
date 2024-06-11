@@ -1,0 +1,24 @@
+.alert {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    width: 20rem;
+    height: 2.2rem;
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px
+  }
+  
+  .alert-success {
+    background-color: black;
+    border-left: 6px solid #3e8e41;
+    color: #3e8e41;
+  }
+  
+  .alert-error {
+    background-color: black;
+    border-left: 6px solid #a94442;
+    color: #a94442;
+  }
