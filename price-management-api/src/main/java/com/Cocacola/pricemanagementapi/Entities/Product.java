@@ -28,11 +28,11 @@ public class Product {
 
     private Integer quantity_ml;
 
-    private Long stock_quantity;
+    private Integer stock_quantity;
 
-    private Long stock_Max;
+    private Integer stock_Max;
 
-    private double price;
+    private Double price;
 
 
 }
