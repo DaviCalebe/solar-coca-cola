@@ -46,7 +46,7 @@ export default function ClientStorage(){
 
             <h1>{client?.name || ""}</h1>
 
-            <button className="add-btn crud-btn" onClick={ () => console.log(selectedClient)}>
+            <button className="add-btn crud-btn" onClick={() => setOpenAddModal(true)}>
                 + Adicionar produto
             </button>
 
@@ -57,6 +57,14 @@ export default function ClientStorage(){
 
             </div>
 
+            <AddModal
+            isOpen={openAddModal}
+            setOpenAddModal={(value) => setOpenAddModal(false)}
+            handleAddClientProduct={handleAddClientProduct}
+            clientId={client?.id}
+            mode="clientStorage"
+            />
+
             <div className="table-box">
                 <table>
                     <thead>
@@ -65,7 +73,7 @@ export default function ClientStorage(){
                             <th>Nome do Produto</th>
                             <th>Quantidade ML</th>
                             <th>Preço Original</th>
-                            <th>Preço Promocional</th>
+                            <th>Quantidade</th>
                             <th>Opções</th>
                         </tr>
                     </thead>
@@ -76,7 +84,7 @@ export default function ClientStorage(){
                             <td>{product?.produto?.name}</td>
                             <td>{product?.produto?.quantity_ml}ml</td>
                             <td>{product?.precoFinal && new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.precoFinal)}</td>
-                            <td>{product?.promotionalPrice}</td>
+                            <td>{product?.quantidade}</td>
                             <td>
                                 <div className="client-box-btn">
                                 <button className="remover-btn crud-btn delete-client" onClick={() => { handleDeleteClientProduct(clientId, product?.id) }}>Excluir produto</button>

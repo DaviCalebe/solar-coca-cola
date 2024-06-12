@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
 import "./addModal.css";
+import { fetchProducts } from "../../services/products-services.js";
+import { useState, useEffect } from "react";
 
-export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, handleAddProduct, handleAddPromotion, mode }) {
+export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, handleAddProduct, handleAddPromotion, handleAddClientProduct, clientId, mode }) {
+  
   const [name, setName] = useState('');
   const [region, setRegion] = useState('');
   const [level, setLevel] = useState('');
@@ -20,6 +22,13 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
   
   const [liberar, setLiberar] = useState(false);
 
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState({});
+
+  useEffect(() => {
+    fetchProducts().then((products) => setProducts(products));
+  }, []);
+
   let dependencies = [];
 
   if (mode === 'client') {
@@ -29,14 +38,15 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
   } else if (mode === 'promotion') {
     dependencies = [productID, level, promotionalPercent];
   } else if (mode === 'clientStorage') {
-    dependencies = [product, quantity];
+    dependencies = [selectedProduct.id, quantity];
   }
   
   useEffect(function(){
     if (
       (mode === 'client' && name && region && level && cnpj && email && phone_number) ||
       (mode === 'product' && name && category && quantity_ml && stock_quantity && stock_Max && price) ||
-      (mode === 'promotion' && productID && level && promotionalPercent)
+      (mode === 'promotion' && productID && level && promotionalPercent) ||
+      (mode === 'clientStorage' && selectedProduct.id && quantity)
     ) {
       setLiberar(true)
     } else {
@@ -225,14 +235,17 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
               mode === 'clientStorage' &&
               <>
                 <h3>Produto</h3>
-                <input 
-                  className="crud-modal-input" 
-                  type="text" 
-                  placeholder="Digite o produto aqui..." 
-                  value={product} 
-                  onChange={(e) => setProduct(e.target.value)} 
-                />
-
+                <select 
+                  className="crud-modal-select" 
+                  value={selectedProduct.id} 
+                  onChange={(e) => setSelectedProduct(products.find((product) => product.id === parseInt(e.target.value)))}
+                >
+                  <option value="">Selecione um produto</option>
+                  {products.map((product) => (
+                    <option key={product.id} value={product.id}>{product.name}</option>
+                  ))}
+                </select>
+          
                 <h3>Quantidade</h3>
                 <input 
                   className="crud-modal-input" 
@@ -241,7 +254,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                   value={quantity} 
                   onChange={(e) => setQuantity(e.target.value)} 
                 />
-              </>
+            </>
           }
           </div>
           <div className="modal-buttons">
@@ -258,7 +271,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                     } else if (mode === 'promotion') {
                       handleAddPromotion(productID, level, promotionalPercent);
                     } else if (mode === 'clientStorage') {
-                      handleAddClientStorage(product, quantity);
+                      handleAddClientProduct(clientId, selectedProduct.id, quantity);
                     }
                     setOpenAddModal(false);
                   }}
@@ -275,7 +288,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                     } else if (mode === 'promotion') {
                       handleAddPromotion(productID, level, promotionalPercent);
                     } else if (mode === 'clientStorage') {
-                      handleAddClientStorage(product, quantity);
+                      handleAddClientProduct(clientId, selectedProduct.id, quantity);
                     }
                     setOpenAddModal(false);
                   }}

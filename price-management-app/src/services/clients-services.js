@@ -70,9 +70,9 @@ export const fetchClientStorage = async (id) => {
     }
   };
 
-export const handleAddClientProduct = async (product, quantity) => {
+export const handleAddClientProduct = async (clientId, product, quantity) => {
   try {
-    const response = await api.post(`/${client}/add/produtos`, {
+    const response = await api.post(`/${clientId}/add/produtos`, {
       product: { id: product },
       quantity
     });
