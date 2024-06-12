@@ -3,7 +3,7 @@
     display: grid;
     justify-self: center;
     grid-template-columns: 2fr 1fr;
-    gap: 30px;
+    gap: 10px 30px;
 }
 
 .summary td{
@@ -12,6 +12,7 @@
 }
 
 .summary section{
+    border-radius: 4px;
     padding: 10px;
 }
 

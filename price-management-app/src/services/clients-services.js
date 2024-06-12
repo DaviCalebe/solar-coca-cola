@@ -1,6 +1,6 @@
 import api from "./api.js";
 
-/* ================= CLIENTS (FALTA O UPDATE)=================
+/* ================= CLIENTS =================
  */
 
 export const fetchClients = async () => {
@@ -10,6 +10,16 @@ export const fetchClients = async () => {
   } catch (error) {
     console.error(error);
     return [];
+  }
+};
+
+export const getClient = async (id) => {
+  try {
+    const response = await api.get(`/clients/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };
 
@@ -59,6 +69,8 @@ try {
 
 /* ================= CLIENTS STORAGE (ERRO EM TUDO) =================
  */
+
+
 
 export const fetchClientStorage = async (client) => {
     try {

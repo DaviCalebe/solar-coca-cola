@@ -8,6 +8,7 @@ import DeleteModal from "../../components/modals/deleteModal.jsx";
 import Alert from "../../components/alert/alert.jsx";
 import { useState, useEffect } from "react";
 import { fetchClients, handleAddClient, handleUpdateClient, handleDeleteClient } from "../../services/clients-services.js"
+import { useNavigate } from 'react-router-dom';
 
 function Clientes(){
 
@@ -20,6 +21,7 @@ function Clientes(){
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [selectedClient, setSelectedClient] = useState(null);
     const [alert, setAlert] = useState({ message: '', type: '' });
+    const navigate = useNavigate();
 
     useEffect(() => {
       fetchClients().then((clients) => {
@@ -152,8 +154,10 @@ function Clientes(){
                                 </button>
 
                                 <button className="redirect-btn crud-btn" onClick={() => {
-                                  setSelectedClient(cl);
-                                  window.location.href = `/clientStorage/${selectedClient.id}`;
+                                  if (cl) {
+                                    setSelectedClient(cl);
+                                    navigate(`/clientStorage/${cl.id}`);
+                                  }
                                 }}>
                                   Produtos
                                 </button>
