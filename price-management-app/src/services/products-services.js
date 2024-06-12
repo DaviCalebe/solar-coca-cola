@@ -1,8 +1,13 @@
 import api from "./api.js";
 
 export const fetchProducts = async () => {
-    const response = await api.get('/products');
-    return response.data;
+    try {
+        const response = await api.get('/products');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
   };
 
 export const handleAddProduct = async (name, category, quantity_ml, stock_quantity, stock_Max, price, products, setProducts, setAlert) => {

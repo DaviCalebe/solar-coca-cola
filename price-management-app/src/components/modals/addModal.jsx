@@ -254,7 +254,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                     if (mode === 'client') {
                       handleAddClient(name, region, level, cnpj, email, phone_number);
                     } else if (mode === 'product') {
-                      handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
+                      handleAddProduct(name, category, quantity_ml, stock_quantity, stock_Max, price);
                     } else if (mode === 'promotion') {
                       handleAddPromotion(productID, level, promotionalPercent);
                     } else if (mode === 'clientStorage') {
@@ -271,7 +271,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                     if (mode === 'client') {
                       handleAddClient(name, region, level, cnpj, email, phone_number);
                     } else if (mode === 'product') {
-                      handleAddProduct(name, region, level, category, quantity_ml, stock_quantity, stock_Max, price);
+                      handleAddProduct(name, category, quantity_ml, stock_quantity, stock_Max, price);
                     } else if (mode === 'promotion') {
                       handleAddPromotion(productID, level, promotionalPercent);
                     } else if (mode === 'clientStorage') {

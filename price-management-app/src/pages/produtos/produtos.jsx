@@ -27,10 +27,10 @@ function Produtos(){
     }, []);
 
     const filteredRepos = products.filter(
-    (repo) =>
-        repo.name.toLowerCase().includes(search.toLowerCase()) &&
-        (selectedCategory === "" || repo.category === selectedCategory)
-    );
+        (repo) =>
+          repo.name && repo.name.toLowerCase().includes(search.toLowerCase()) &&
+          (selectedCategory === "" || repo.category === selectedCategory)
+      );
 
     return <main>
         <Sidebar />
