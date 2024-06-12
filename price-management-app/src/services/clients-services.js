@@ -68,13 +68,13 @@ export const fetchClientStorage = async (id) => {
       console.error(error);
       return null;
     }
-  };
+};
 
-export const handleAddClientProduct = async (clientId, product, quantity) => {
+export const handleAddClientProduct = async (clientId, produtoId, quantidade) => {
   try {
     const response = await api.post(`/${clientId}/add/produtos`, {
-      product: { id: product },
-      quantity
+      product: { id: produtoId },
+      quantidade
     });
     setPromotions([...promotions, response.data]);
   } catch (error) {

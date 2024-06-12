@@ -272,6 +272,7 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                       handleAddPromotion(productID, level, promotionalPercent);
                     } else if (mode === 'clientStorage') {
                       handleAddClientProduct(clientId, selectedProduct.id, quantity);
+                      console.log(clientId, selectedProduct.id, quantity)
                     }
                     setOpenAddModal(false);
                   }}
