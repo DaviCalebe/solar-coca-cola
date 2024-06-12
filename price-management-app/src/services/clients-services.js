@@ -13,16 +13,6 @@ export const fetchClients = async () => {
   }
 };
 
-export const getClient = async (id) => {
-  try {
-    const response = await api.get(`/clients/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
 export const handleAddClient = async (name, region, level, cnpj, email, phone_number, clients, setClients, setAlert) => {
   try {
     const response = await api.post('/clients/add', {
@@ -70,11 +60,9 @@ try {
 /* ================= CLIENTS STORAGE (ERRO EM TUDO) =================
  */
 
-
-
-export const fetchClientStorage = async (client) => {
+export const fetchClientStorage = async (id) => {
     try {
-      const response = await api.get(`/clients/${client}/produtos`);
+      const response = await api.get(`/clients/${id}/produtos`);
       return response.data;
     } catch (error) {
       console.error(error);
