@@ -78,16 +78,16 @@ export default function ClientStorage(){
                         </tr>
                     </thead>
                     <tbody>
-                        {clientStorage && clientStorage.map((product) => (
-                            <tr key={product?.id} className={product?.id % 2 === 0? 'white-line' : 'grey-line'}>
-                            <td>{product?.id}</td>
+                            {clientStorage && clientStorage.map((product) => (
+                        <tr key={`${product?.id}-${product?.produto?.id}`} className={product?.produto?.id % 2 === 0 ? 'white-line' : 'grey-line'}>
+                            <td>{product?.produto?.id}</td>
                             <td>{product?.produto?.name}</td>
                             <td>{product?.produto?.quantity_ml}ml</td>
                             <td>{product?.precoFinal && new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.precoFinal)}</td>
                             <td>{product?.quantidade}</td>
                             <td>
                                 <div className="client-box-btn">
-                                <button className="remover-btn crud-btn delete-client" onClick={() => { handleDeleteClientProduct(clientId, product?.id) }}>Excluir produto</button>
+                                    <button className="remover-btn crud-btn delete-client" onClick={() => { handleDeleteClientProduct(clientId, product?.produto?.id) }}>Excluir produto</button>
                                 </div>
                             </td>
                             </tr>

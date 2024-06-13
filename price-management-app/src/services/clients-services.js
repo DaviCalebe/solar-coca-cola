@@ -70,23 +70,25 @@ export const fetchClientStorage = async (id) => {
     }
 };
 
-export const handleAddClientProduct = async (clientId, produtoId, quantidade) => {
+export const handleAddClientProduct = async (clientId, productId, quantidade) => {
   try {
-    const response = await api.post(`/${clientId}/add/produtos`, {
-      product: { id: produtoId },
-      quantidade
-    });
-    setPromotions([...promotions, response.data]);
+    const requestData = {
+      produtoId: productId,
+      quantidade: Number(quantidade)
+    };
+    
+    const response = await api.post(`/clients/${clientId}/add/produtos`, requestData);
+    console.log("Produto adicionado com sucesso:", response.data);
   } catch (error) {
-    console.error(error);
-  }
+      console.error(error);
+    }
 };
 
-export const handleDeleteClientProduct = async (client, product) => {
+export const handleDeleteClientProduct = async (clientId, productId) => {
   try {
-    await api.delete(`/${client}/delete/${product}`);
-    console.log(`Produto ${product} do cliente ${client} excluído com sucesso`);
+    await api.delete(`/clients/${clientId}/DeleteProduct/${productId}`);
+    console.log(`Produto ${productId} do cliente ${clientId} excluído com sucesso`);
   } catch (error) {
-    console.log(`Erro ao deletar o product ${product} do cliente ${client}`);
+    console.log(`Erro ao deletar o product ${productId} do cliente ${clientId}`);
   }
 };

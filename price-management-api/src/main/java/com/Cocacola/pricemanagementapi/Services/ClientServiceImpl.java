@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
+import java.util.Optional;
 import java.util.List;
 
 @Service
@@ -62,6 +62,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void adicionarProdutoAoCliente(Long clienteId, Long produtoId,int quantidade) {
+        
+        Optional<ClientProduct> existingClientProduct = clientProductRepository.findByClienteIdAndProdutoId(clienteId, produtoId);
+        if (existingClientProduct.isPresent()) {
+            throw new IllegalArgumentException("Este produto já foi adicionado para este cliente");
+        }
+
         Client cliente = clientRepository.findById(clienteId)
                 .orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid Client ID"));
 
@@ -96,6 +102,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientProduct> obterProdutosDoCliente(Long clienteId) {
+        
         Client cliente = clientRepository.findById(clienteId)
                 .orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid Client ID"));
         return clientProductRepository.findByClienteId(clienteId);
