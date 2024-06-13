@@ -1,8 +1,9 @@
 .summary{
     width: 92vw;
+    height: 75vh;
     display: grid;
     justify-self: center;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     gap: 10px 30px;
 }
 
@@ -17,14 +18,15 @@
 }
 
 .summary iframe{
-    width: 70%;
-    height: 375px;
+    width: 100%;
+    height: 95%;
 }
 
 .relatory-summary{
     background-color: whitesmoke;
     width: 100%;
-    height: 25rem;
+    height: 97.3%;
+    grid-area: span 2;
 }
 
 .products-summary{
@@ -32,13 +34,15 @@
     grid-template-rows: 1fr 1fr 1fr;
     background-color: whitesmoke;
     width: 100%;
-    height: 25rem;
+    height: 21.3rem;
 }
 
 .promotions-summary{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
     background-color: whitesmoke;
-    width: 100%rem;
-    height: 20rem;
+    width: 100%;
+    height: 21.3rem;
 }
 
 .link-button{
