@@ -4,6 +4,7 @@ import Upbar from "../../components/upbar/upbar.jsx";
 import AddModal from "../../components/modals/addModal.jsx";
 import DeleteModal from "../../components/modals/deleteModal.jsx";
 import api from "../../services/api.js";
+import Alert from "../../components/alert/alert.jsx";
 import { fetchClientStorage, handleAddClientProduct, handleDeleteClientProduct } from "../../services/clients-services.js";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -17,6 +18,7 @@ export default function ClientStorage(){
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [selectedClientProduct, setSelectedClientProduct] = useState(null);
     const [client, setClient] = useState(null);
+    const [alert, setAlert] = useState({ message: '', type: '' });
     
     useEffect(() => {
         const getClient = async (id) => {
@@ -60,10 +62,22 @@ export default function ClientStorage(){
             <AddModal
             isOpen={openAddModal}
             setOpenAddModal={(value) => setOpenAddModal(false)}
-            handleAddClientProduct={handleAddClientProduct}
+            handleAddClientProduct={(clientId, productId, quantidade) => handleAddClientProduct(clientId, productId, quantidade, setAlert)}
             clientId={client?.id}
             mode="clientStorage"
             />
+
+            <DeleteModal
+            isOpen={openDeleteModal}
+            setOpenDeleteModal={(value) => setOpenDeleteModal(false)}
+            handleDeleteClientProduct={(clientId, productId) => handleDeleteClientProduct(clientId, productId, setAlert)}
+            mode="clientStorage"
+            clientOrPromotionOrProduct={{ client: { id: selectedClient }, product: selectedClientProduct }}
+            selectedClientProduct={selectedClientProduct}
+            />
+
+            <Alert type={alert.type} message={alert.message} />
+
 
             <div className="table-box">
                 <table>
@@ -87,7 +101,16 @@ export default function ClientStorage(){
                             <td>{product?.quantidade}</td>
                             <td>
                                 <div className="client-box-btn">
-                                    <button className="remover-btn crud-btn delete-client" onClick={() => { handleDeleteClientProduct(clientId, product?.produto?.id) }}>Excluir produto</button>
+                                    <button
+                                    className="remover-btn crud-btn"
+                                    onClick={() => {
+                                        setSelectedClient(client);
+                                        setSelectedClientProduct(product);
+                                        setOpenDeleteModal(true);
+                                    }}
+                                    >
+                                        EXCLUIR
+                                    </button>
                                 </div>
                             </td>
                             </tr>

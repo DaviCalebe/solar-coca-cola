@@ -25,7 +25,7 @@ function Home(){
             <div className="summary">
                 <section className="relatory-summary">
                     <h1>Relatórios</h1>
-
+                    <iframe title="copysolarcocacola" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiZWQ4MjgwNDktMmQ2Ni00NGEzLWIzNjctMzcxOGZkZTFkZThmIiwidCI6IjA0Mjg3NmE2LTA1MDMtNDQxMi04Mjk1LWMwMjRlYTMzYzA2YSJ9" frameborder="0" allowFullScreen="true"></iframe>
                 </section>
                 <section className="products-summary">
                     <h1>Produtos</h1>

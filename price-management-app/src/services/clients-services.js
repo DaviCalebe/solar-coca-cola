@@ -70,25 +70,28 @@ export const fetchClientStorage = async (id) => {
     }
 };
 
-export const handleAddClientProduct = async (clientId, productId, quantidade) => {
+export const handleAddClientProduct = async (clientId, productId, quantidade, setAlert) => {
   try {
     const requestData = {
       produtoId: productId,
       quantidade: Number(quantidade)
     };
-    
     const response = await api.post(`/clients/${clientId}/add/produtos`, requestData);
     console.log("Produto adicionado com sucesso:", response.data);
+    setAlert({ message: 'Produto adicionado com sucesso!', type: 'success' });
   } catch (error) {
       console.error(error);
+      setAlert({ message: 'Erro ao adicionar produto!', type: 'error' });
     }
 };
 
-export const handleDeleteClientProduct = async (clientId, productId) => {
+export const handleDeleteClientProduct = async (client, productId, setAlert) => {
   try {
-    await api.delete(`/clients/${clientId}/DeleteProduct/${productId}`);
-    console.log(`Produto ${productId} do cliente ${clientId} excluído com sucesso`);
+    await api.delete(`/clients/${client.id}/DeleteProduct/${productId}`);
+    console.log(`Produto ${productId} do cliente ${client.id} excluído com sucesso`);
+    setAlert({ message: 'Produto excluído com sucesso!', type: 'success' });
   } catch (error) {
-    console.log(`Erro ao deletar o product ${productId} do cliente ${clientId}`);
+    console.log(`Erro ao deletar o product ${productId} do cliente ${client.id}`);
+    setAlert({ message: 'Erro ao excluir produto!', type: 'error' });
   }
 };

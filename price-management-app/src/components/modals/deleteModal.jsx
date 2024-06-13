@@ -1,6 +1,6 @@
 import "./deleteModal.css";
 
-export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteClient, handleDeleteProduct, handleDeletePromotion, mode, clientOrPromotionOrProduct }) {
+export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteClient, handleDeleteProduct, handleDeletePromotion, handleDeleteClientProduct, mode, clientOrPromotionOrProduct }) {
   if (isOpen) {
     return (
       <div className="modal">
@@ -23,6 +23,8 @@ export default function DeleteModal({ isOpen, setOpenDeleteModal, handleDeleteCl
                   handleDeletePromotion(clientOrPromotionOrProduct.promotion.id);
                 } else if (mode === 'product') {
                   handleDeleteProduct(clientOrPromotionOrProduct.product.id);
+                } else if (mode === 'clientStorage') {
+                  handleDeleteClientProduct(clientOrPromotionOrProduct.client.id, clientOrPromotionOrProduct.product.produto.id);
                 }
                 setOpenDeleteModal(false);
               }}

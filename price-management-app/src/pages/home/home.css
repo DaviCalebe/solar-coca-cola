@@ -16,6 +16,11 @@
     padding: 10px;
 }
 
+.summary iframe{
+    width: 70%;
+    height: 375px;
+}
+
 .relatory-summary{
     background-color: whitesmoke;
     width: 100%;
