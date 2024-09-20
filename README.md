@@ -82,3 +82,8 @@ e siga esses passos para integrar com front :
   ![image](https://github.com/HirokiAsano1/CocaCola-api/assets/78913393/d0d90b96-a1f9-4fab-be84-da1306593b61)
   
  nesses tres arquivos troque baseURl atual por http://localhost:8080
+
+
+## IMPORTANTE
+
+É possível que a hospedagem tenha terminado pelo tempo grátis determinado pelos sites de deploy, então caso você não consiga acessar pelos links acima, da um pulinho no meu linkedin onde tem os detalhes da aplicação e um vídeo mostrando a experiência do usuário nela: https://www.linkedin.com/posts/davi-calebe-1a64681bb_react-springboot-mysql-activity-7208916626522460160-iL75?utm_source=share&utm_medium=member_desktop
