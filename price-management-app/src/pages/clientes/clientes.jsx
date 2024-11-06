@@ -59,9 +59,9 @@ function Clientes(){
             onChange={(e) => setSelectedLevel(e.target.value)}
             >
                 <option value="">Todos os níveis</option>
-                <option value="Bronze">Ouro</option>
+                <option value="Bronze">Bronze</option>
                 <option value="Prata">Prata</option>
-                <option value="Ouro">Bronze</option>
+                <option value="Ouro">Ouro</option>
             </select>
 
             <select
