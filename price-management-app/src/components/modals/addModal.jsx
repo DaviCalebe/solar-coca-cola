@@ -215,9 +215,9 @@ export default function AddModal({ isOpen, setOpenAddModal, handleAddClient, han
                   onChange={(e) => setLevel(e.target.value)}
                 >
                   <option value="">Selecione um nível</option>
-                  <option value={1}>Ouro</option>
+                  <option value={1}>Bronze</option>
                   <option value={2}>Prata</option>
-                  <option value={3}>Bronze</option>
+                  <option value={3}>Ouro</option>
                 </select>
 
                 <h3>Porcentagem Promocional</h3>

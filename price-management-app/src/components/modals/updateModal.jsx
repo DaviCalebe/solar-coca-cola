@@ -130,9 +130,9 @@ export default function UpdateModal({ isOpen, setOpenUpdateModal, handleUpdateCl
                 
                 >
                   <option value="">Selecione um nível</option>
-                  <option value={1}>Ouro</option>
+                  <option value={1}>Bronze</option>
                   <option value={2}>Prata</option>
-                  <option value={3}>Bronze</option>
+                  <option value={3}>Ouro</option>
                 </select>
 
                 <h3>CNPJ</h3>
