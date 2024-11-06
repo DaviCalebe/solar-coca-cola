@@ -64,7 +64,7 @@ https://gestaodepreco-solarcocacola.onrender.com/
 
 A aplicação backend está hospedada temporariamente no seguinte link:
 
-https://cocacola-api-production.up.railway.app
+https://apicocacola.onrender.com
 
 Caso a hospedagem tenha terminado, utilize http://localhost:8080 para as requisições.
 
