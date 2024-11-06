@@ -60,7 +60,7 @@ function Clientes(){
             >
                 <option value="">Todos os níveis</option>
                 <option value="Bronze">Bronze</option>
-                <option value="Prata">Praaaaaaaaata</option>
+                <option value="Prata">Prata</option>
                 <option value="Ouro">Ouro</option>
             </select>
 
